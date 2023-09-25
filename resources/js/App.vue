@@ -16,6 +16,20 @@
                 </div>
                 <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
                 <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
+
+                <div class="autorisation">
+                    <h3 class="autorisation__title">Вход для авторов</h3>
+                    <div class="autorisation__form">
+                        <div>Логин<input type="text" placeholder=""></div>
+                        <div>Пароль<input type="text" placeholder=""></div>
+                    </div>
+                    <div class="autorisation__subtitle">
+                        <button class="autorisation__btn">Вход</button>
+                        <input type="checkbox"> Запомнить меня
+                    </div>
+
+                    <p href="">Забыли пароль?</p>
+                </div>
             </div>
         </div>
         <div class="header__left">
@@ -147,6 +161,43 @@ li{
     width: 601px;
     /* height: 80px; */
 }
+.autorisation {
+    border: 2px solid white;
+    /* margin-top: auto; */
+    width: 300px;
+    margin: 10px auto;
+    font-size: 12px;
+}
+.autorisation__title {
+    margin: 0;
+    background-color: #3b5e97;
+}
+.autorisation__form >div{
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+    margin: 10px auto;
+    align-items: center;
+}
+
+
+.autorisation__subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+
+}
+
+.autorisation__subtitle button{
+    background-color: #3b5e97;
+    color: white;
+    border: 1px solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-family: cursive;
+}
+
 
 .account_group {
     float: right;
