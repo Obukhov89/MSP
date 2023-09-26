@@ -65,8 +65,8 @@ export default {
 
 body {
     margin: 0 auto;
-    background-color: #c6dcf2
-}
+    background-color: #c6dcf2;
+    font-family: Montserrat, sans-serif;}
 
 .container {
     margin: 0 auto;
@@ -107,11 +107,11 @@ li{
     margin: 1px 1px 10px 1px;
     text-align: center;
     color: white;
-    font-size: 14px;
+    font-size: 12px;
     padding: 5px;
     /* letter-spacing: 1px; */
     font-weight: 600;
-    font-family: monospace;
+    /* font-family: monospace; */
 }
 .header-list{
 
@@ -138,7 +138,7 @@ li{
 .header__title h1{
     /* width: 500px; */
     text-align: center;
-    font-family: 'Comfortaa', cursive;
+    /* font-family: 'Comfortaa', cursive; */
 
 }
 .header__group{
@@ -195,7 +195,7 @@ li{
     border: 1px solid;
     padding: 5px 10px;
     border-radius: 2px;
-    font-family: cursive;
+    /* font-family: cursive; */
 }
 
 
@@ -218,7 +218,7 @@ h2,
 h3,
 h4 {
     /* text-transform: uppercase; */
-    font-family: 'Comfortaa', cursive;
+    /* font-family: 'Comfortaa', cursive; */
     font-size: 16px;
     line-height: 26px;
     font-weight: 300;
