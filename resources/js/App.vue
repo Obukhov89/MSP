@@ -16,7 +16,6 @@
                 </div>
                 <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
                 <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
-
                 <div class="autorisation">
                     <h3 class="autorisation__title">Вход для авторов</h3>
                     <div class="autorisation__form">
