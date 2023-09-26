@@ -2,8 +2,8 @@
     <div class="container header">
         <div class="header__left">
             <p class="header__left-title">Платон мне друг...</p>
-            <img class="rk" src="../../public/img/rk.jpg" />
-            <li class="header-list">Конкурс «Рябина на коньяке» </li>
+            <img class="rk" src="../../public/img/rk.jpg"/>
+            <li class="header-list">Конкурс «Рябина на коньяке»</li>
             <li class="header-list">Приглашение на конкурс</li>
             <li class="header-list">Произведения номинации «Проза»</li>
             <li class="header-list">Произведения номинации «Поэзия»</li>
@@ -12,7 +12,7 @@
             <div class="logo-container header__content">
                 <h1 class="header__title">Портал Международного Союза писателей "Новый Современник"</h1>
                 <div class="header__group">
-                    <img class="logo" src="../../public/img/logo.png" />
+                    <img class="logo" src="../../public/img/logo.png"/>
                 </div>
                 <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
                 <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
@@ -20,21 +20,24 @@
                 <form method="post" @submit.prevent="loginFunc" class="autorisation">
                     <h3 class="autorisation__title">Вход для авторов</h3>
                     <div class="autorisation__form">
-                        <div>Логин<input type="text" placeholder="" name="login" v-model="login"></div>
-                        <div>Пароль<input type="text" placeholder="" name="password" v-model="password"></div>
+                        <div>Логин
+                            <input type="text" placeholder="" name="login" v-model="login">
+                        </div>
+                        <div>Пароль
+                            <input type="text" placeholder="" name="password" v-model="password">
+                        </div>
                     </div>
                     <div class="autorisation__subtitle">
                         <button class="autorisation__btn">Вход</button>
                         <input type="checkbox"> Запомнить меня
                     </div>
-
                     <p href="">Забыли пароль?</p>
                 </form>
             </div>
         </div>
         <div class="header__left">
             <p class="header__left-title">Дежурный писатель</p>
-            <img class="rk" src="../../public/img/deg-pisatel.jpg" />
+            <img class="rk" src="../../public/img/deg-pisatel.jpg"/>
             <li class="header-list">Мысли, афоризмы и цитаты о писательском труде</li>
             <li class="header-list">Привычки и навыки, помогающие нам в писательском труде</li>
             <li class="header-list">Золотые правила писателей</li>
@@ -57,18 +60,27 @@ import router from "./router";
 
 export default {
     name: "App",
-    components: { HomePage, Menu, Block},
-    methods:{
-        loginFunc(){
+    components: {HomePage, Menu, Block},
+    data() {
+        return ({
+                login: '',
+                password: ''
+            }
+        )
+    },
+    methods: {
+
+        loginFunc() {
+
             let data = {
                 login: this.login,
                 password: this.password
             }
-            console.log('ok');
+
             axios.get('/sanctum/csrf-cookie').then((response) => {
                 axios.post('api/login', data).then((response) => {
                     console.log(response.data)
-                    if (response.data === true){
+                    if (response.data === true) {
                         router.push({name: 'HomePage'})
                     }
                 })
@@ -84,22 +96,24 @@ export default {
 
 body {
     margin: 0 auto;
-    background-color: #c6dcf2
+    background-color: #c6dcf2;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
     margin: 0 auto;
     width: 1100px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     padding: 20px 10px;
     /* background-color: rgb(5, 134, 163); */
 
 }
 
-li{
+li {
     list-style: none;
 }
-.logo-container{
+
+.logo-container {
     width: 600px;
     align-items: center;
     text-align: center;
@@ -108,7 +122,7 @@ li{
 }
 
 .header {
-        /* height: 100px; */
+    /* height: 100px; */
     background-color: #C6DCF2;
     display: flex;
     /* background-blend-mode: luminosity; */
@@ -116,12 +130,14 @@ li{
     justify-content: space-around;
     padding-top: 10px;
 }
-.header__left{
+
+.header__left {
     width: 180px;
     border: 2px solid white;
     background-color: #3b5e97;
 }
-.header__left-title{
+
+.header__left-title {
     border: 2px solid white;
     margin: 1px 1px 10px 1px;
     text-align: center;
@@ -130,37 +146,41 @@ li{
     padding: 5px;
     /* letter-spacing: 1px; */
     font-weight: 600;
-    font-family: monospace;
+    /*font-family: monospace;*/
 }
-.header-list{
 
+.header-list {
     margin: 1px;
     text-align: center;
     color: white;
     font-size: 12px;
     padding: 5px 0;
-    font-family: monospace;
+    /*font-family: monospace;*/
     cursor: pointer;
 }
-.header-list:not(:last-child){
+
+.header-list:not(:last-child) {
     border-bottom: 2px solid white;
 }
-.header__title{
+
+.header__title {
     border: 1px solid #3b5e97;
     background-color: #3b5e97;
     /* text-align: center; */
     width: 600px;
-    text-transform:none;
+    text-transform: none;
     align-items: center;
     margin: 0 auto;
 }
-.header__title h1{
+
+.header__title h1 {
     /* width: 500px; */
     text-align: center;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Montserrat', cursive;
 
 }
-.header__group{
+
+.header__group {
     display: flex;
     justify-content: space-between;
     width: 600px;
@@ -168,7 +188,8 @@ li{
     align-items: center;
     margin: 0 auto;
 }
-.header__subtitle{
+
+.header__subtitle {
 
     text-align: center;
     letter-spacing: 1px;
@@ -180,6 +201,7 @@ li{
     width: 601px;
     /* height: 80px; */
 }
+
 .autorisation {
     border: 2px solid white;
     /* margin-top: auto; */
@@ -187,11 +209,13 @@ li{
     margin: 10px auto;
     font-size: 12px;
 }
+
 .autorisation__title {
     margin: 0;
     background-color: #3b5e97;
 }
-.autorisation__form >div{
+
+.autorisation__form > div {
     display: flex;
     justify-content: space-between;
     width: 220px;
@@ -208,13 +232,13 @@ li{
 
 }
 
-.autorisation__subtitle button{
+.autorisation__subtitle button {
     background-color: #3b5e97;
     color: white;
     border: 1px solid;
     padding: 5px 10px;
     border-radius: 2px;
-    font-family: cursive;
+    /*font-family: cursive;*/
 }
 
 
@@ -237,7 +261,7 @@ h2,
 h3,
 h4 {
     /* text-transform: uppercase; */
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Montserrat', cursive;
     font-size: 16px;
     line-height: 26px;
     font-weight: 300;
@@ -245,6 +269,7 @@ h4 {
     margin-bottom: 1em;
     text-align: center;
 }
+
 .content {
     position: relative;
     top: -287px;
@@ -253,7 +278,7 @@ h4 {
 }
 
 .form_text {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     line-height: 26px;
     font-weight: 500;
