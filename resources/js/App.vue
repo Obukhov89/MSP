@@ -17,7 +17,7 @@
                 <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
                 <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
 
-                <div class="autorisation">
+                <form @submit.prevent="login" class="autorisation">
                     <h3 class="autorisation__title">Вход для авторов</h3>
                     <div class="autorisation__form">
                         <div>Логин<input type="text" placeholder=""></div>
@@ -29,7 +29,7 @@
                     </div>
 
                     <p href="">Забыли пароль?</p>
-                </div>
+                </form>
             </div>
         </div>
         <div class="header__left">
@@ -51,11 +51,22 @@
 import HomePage from "./components/HomePage.vue";
 import Menu from "./components/Menu.vue";
 import Block from "./components/Block.vue";
+import axios from "axios";
 
 
 export default {
     name: "App",
     components: { HomePage, Menu, Block},
+    methods:{
+
+        login(){
+            console.log('ok');
+            axios.get('api/login')
+            .then((response) => {
+                console.log(response.data)
+            })
+        }
+    }
 
 }
 </script>
