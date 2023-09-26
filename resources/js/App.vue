@@ -17,11 +17,11 @@
                 <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
                 <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
 
-                <form @submit.prevent="login" class="autorisation">
+                <form method="post" @submit.prevent="loginFunc" class="autorisation">
                     <h3 class="autorisation__title">Вход для авторов</h3>
                     <div class="autorisation__form">
-                        <div>Логин<input type="text" placeholder=""></div>
-                        <div>Пароль<input type="text" placeholder=""></div>
+                        <div>Логин<input type="text" placeholder="" name="login" v-model="login"></div>
+                        <div>Пароль<input type="text" placeholder="" name="password" v-model="password"></div>
                     </div>
                     <div class="autorisation__subtitle">
                         <button class="autorisation__btn">Вход</button>
@@ -52,18 +52,26 @@ import HomePage from "./components/HomePage.vue";
 import Menu from "./components/Menu.vue";
 import Block from "./components/Block.vue";
 import axios from "axios";
+import router from "./router";
 
 
 export default {
     name: "App",
     components: { HomePage, Menu, Block},
     methods:{
-
-        login(){
+        loginFunc(){
+            let data = {
+                login: this.login,
+                password: this.password
+            }
             console.log('ok');
-            axios.get('api/login')
-            .then((response) => {
-                console.log(response.data)
+            axios.get('/sanctum/csrf-cookie').then((response) => {
+                axios.post('api/login', data).then((response) => {
+                    console.log(response.data)
+                    if (response.data === true){
+                        router.push({name: 'HomePage'})
+                    }
+                })
             })
         }
     }

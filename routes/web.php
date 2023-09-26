@@ -17,4 +17,4 @@ Route::get('{any?}', function () {
     return view('app');
 })->where('any', '.*');
 
-Route::get('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc']);
+//Route::get('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc']);
