@@ -70,21 +70,20 @@ export default {
     },
     methods: {
 
-        loginFunc() {
+        async loginFunc() {
 
             let data = {
                 login: this.login,
                 password: this.password
             }
 
-            axios.get('/sanctum/csrf-cookie').then((response) => {
-                axios.post('api/login', data).then((response) => {
+                axios.post('/login', data).then((response) => {
                     console.log(response.data)
                     if (response.data === true) {
                         router.push({name: 'HomePage'})
                     }
                 })
-            })
+        
         }
     }
 

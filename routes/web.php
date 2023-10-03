@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{any?}', function () {
-    return view('app');
-})->where('any', '.*');
 
-//Route::get('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc']);
+Route::get('/', function () {
+    return view('app');
+});
+
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'login', function(Request $request){ return $request->user(); }]);
+
+
+
+//Route::post('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc'], function(){ return view('welcome');});
+URL::forceScheme('https');
