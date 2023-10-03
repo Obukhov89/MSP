@@ -7,6 +7,7 @@
             <li class="header-list">Приглашение на конкурс</li>
             <li class="header-list">Произведения номинации «Проза»</li>
             <li class="header-list">Произведения номинации «Поэзия»</li>
+            <!-- <li></li> -->
         </div>
         <div class="header__logo">
             <div class="logo-container header__content">
