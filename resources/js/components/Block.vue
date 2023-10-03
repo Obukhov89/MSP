@@ -22,8 +22,6 @@ export default {
 #block__news {
     background-color: #C6DCF2;
     margin:0 auto;
-
-
 }
 #block__news h3 {
     text-align: center;
