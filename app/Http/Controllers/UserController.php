@@ -24,17 +24,31 @@ class UserController extends Controller
 
         $passDb = '';
 
+        $arrUser = [];
+        $arrBook = [];
+
         foreach ($query as $item){
             $passDb = $item->passw;
+            $arrUser = [
+                'idUser' => $item->id,
+                'nameUser' => $item->psname,
+                'login' => $item->login
+            ];
         }
 
+        $bookList = DB::select('select `title` from `docs2` where `aid` = :aid', ['aid' => $arrUser['idUser']]);
+
+        foreach ($bookList as $val){
+           $arrBook[] = $val->title;
+        }
+
+        $arrUser['books'] = $arrBook;
+
         if ($passDb == $credentials['password']){
-            echo json_encode(true);
+            echo json_encode($arrUser);
         }
         else {
             json_encode(false);
         }
-
-
     }
 }
