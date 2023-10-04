@@ -220,7 +220,7 @@
     </div>
 
 
-    <Block class="container"></Block>
+    <!-- <Block class="container"></Block> -->
 
     <div class="right-blocks">
         <div class="header__block right-block">
@@ -307,7 +307,7 @@
 
 </div>
 
-    <!-- <Menu class="container"></Menu> -->
+    <HomePage class=""></HomePage>
 
 
 
