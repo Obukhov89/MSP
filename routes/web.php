@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login', function(Request $request){ return $request->user(); }]);
+Route::get('/userCSV', [\App\Http\Controllers\UserController::class, 'userCSV']);
 
 
 

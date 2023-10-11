@@ -51,11 +51,6 @@ export default {
     },
     created() {
         this.userName = this.$store.state.authorName
-        // this.countComposition = length.this.$store.state.books
-        //
-        // this.$store.state.books.forEach((items) => {
-        //     this.nameComposition.push(items)
-        // })
     },
 
     methods:{
