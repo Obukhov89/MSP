@@ -1,9 +1,9 @@
 <template>
     <div class="container header">
-        <div class="header__left">
-            <p class="header__left-title">Платон мне друг...</p>
-            <img class="rk" src="../../public/img/rk.jpg" />
-            <li class="header-list">Конкурс «Рябина на коньяке» </li>
+        <div class="header__block">
+            <p class="header__block-title">Платон мне друг...</p>
+            <img class="rk" src="../../public/img/rk.jpg"/>
+            <li class="header-list">Конкурс «Рябина на коньяке»</li>
             <li class="header-list">Приглашение на конкурс</li>
             <li class="header-list">Произведения номинации «Проза»</li>
             <li class="header-list">Произведения номинации «Поэзия»</li>
@@ -12,76 +12,379 @@
             <div class="logo-container header__content">
                 <h1 class="header__title">Портал Международного Союза писателей "Новый Современник"</h1>
                 <div class="header__group">
-                    <img class="logo" src="../../public/img/logo.png" />
+                    <img class="logo" src="../../public/img/logo.png"/>
+                    <form method="post" @submit.prevent="loginFunc" class="autorisation">
+                        <h3 class="autorisation__title">Вход для авторов</h3>
+                        <div class="autorisation__form">
+                            <div>Логин
+                                <input type="text" placeholder="" name="login" v-model="login">
+                            </div>
+                            <div>Пароль
+                                <input type="text" placeholder="" name="password" v-model="password">
+                            </div>
+                        </div>
+                        <div class="autorisation__subtitle">
+                            <button class="autorisation__btn">Вход</button>
+                            <input type="checkbox"> Запомнить меня
+                        </div>
+                        <p href="">Забыли пароль?</p>
+                    </form>
                 </div>
+
                 <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
                 <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
-
-                <div class="autorisation">
-                    <h3 class="autorisation__title">Вход для авторов</h3>
-                    <div class="autorisation__form">
-                        <div>Логин<input type="text" placeholder=""></div>
-                        <div>Пароль<input type="text" placeholder=""></div>
-                    </div>
-                    <div class="autorisation__subtitle">
-                        <button class="autorisation__btn">Вход</button>
-                        <input type="checkbox"> Запомнить меня
-                    </div>
-
-                    <p href="">Забыли пароль?</p>
-                </div>
+            </div>
+            <div id="navbar">
+                <ul class="navbar__list">
+                    <li> <button class="li-btn"> Главная</button></li>
+                    <li> <button  class="li-btn">Новости и объявления</button></li>
+                    <li> <button  class="li-btn"> Круглый стол</button></li>
+                    <li> <button  class="li-btn"> Лента рецензий</button></li>
+                    <li> <button  class="li-btn"> Ленты форумов</button></li>
+                    <li> <button  class="li-btn"> Обзоры и итоги конкурсов</button></li>
+                    <li> <button  class="li-btn"> Диалоги, дискуссии, обсуждения</button></li>
+                    <li> <button  class="li-btn"> Избранные произведения</button></li>
+                    <li> <button  class="li-btn"> Литобъединения и союзы писателей</button></li>
+                    <li> <button  class="li-btn"> Литературные салоны, гостинные, студии, кафе</button></li>
+                    <li> <button  class="li-btn"> Kонкурсы и премии</button>    </li>
+                    <li> <button  class="li-btn"> Проекты критики</button></li>
+                    <li> <button  class="li-btn"> Новости Литературной сети</button></li>
+                    <li> <button  class="li-btn"> Журналы</button></li>
+                    <li> <button  class="li-btn"> Издательские проекты</button></li>
+                    <li> <button  class="li-btn"> Издать книгу</button></li>
+                </ul>
             </div>
         </div>
-        <div class="header__left">
-            <p class="header__left-title">Дежурный писатель</p>
-            <img class="rk" src="../../public/img/deg-pisatel.jpg" />
+
+        <div class="header__block">
+            <p class="header__block-title">Дежурный писатель</p>
+            <img class="rk" src="../../public/img/deg-pisatel.jpg"/>
             <li class="header-list">Мысли, афоризмы и цитаты о писательском труде</li>
             <li class="header-list">Привычки и навыки, помогающие нам в писательском труде</li>
             <li class="header-list">Золотые правила писателей</li>
-
         </div>
     </div>
-    <Menu class="container"></Menu>
-    <Block class="container"></Block>
+    <router-view/>
+    <div class="container blocks">
+        <div class="left-blocks">
+            <div class="header__block left-block">
+                <p class="header__block-title">Буфет. Истории за нашим столом</p>
+                <img class="rk" src="../../public/img/bufet.jpg"/>
+                <li class="header-list">ОКТЯБРЬСКИЕ ПОСИДЕЛКИ</li>
+                <li class="header-list">Лучшие рассказчикив нашем Буфете</li>
+            </div>
+
+            <div class="header__block left-block">
+                <p class="header__block-title">Сергей Гамаюнов (Черкесский)</p>
+                <img class="rk" src="../../public/img/Sergey.jpg"/>
+                <li class="header-list">В Прощенное воскресенье</li>
+            </div>
+
+            <div class="header__block left-block">
+                <p class="header__block-title">Конкурсы на призы Литературного фонда имени Сергея Есенина</p>
+                <img class="rk" src="../../public/img/priz-lf1.jpg"/>
+                <li class="header-list">Литературный конкурс "Рассвет"</li>
+            </div>
+            <div class="link-block left-block">
+                <img class="rk" src="../../public/img/r-u.jpg"/>
+            </div>
+            <div class="link-block left-block">
+                <p class="link-block-title">Английский клуб</p>
+                <li class="link-block-list">&#9658; Положение о клубе</li>
+                <li class="link-block-list">&#9658; Зал Прозы</li>
+                <li class="link-block-list">&#9658; Зал Поэзии</li>
+                <li class="link-block-list">&#9658; Английская дуэль</li>
+                <li class="link-block-list">&#9658; Форум клуба</li>
+                <li class="link-block-list">&#9658; Атрибутика клуба</li>
+                <li class="link-block-list">&#9658; Архив клуба</li>
+                <li class="link-block-list">&#9658; Бар "За углом"</li>
+            </div>
+            <div class="link-block left-block">
+                <img class="rk" src="../../public/img/platon-grakov.jpg"/>
+            </div>
+            <div class="link-block left-block">
+                <img class="rk" src="../../public/img/reg.jpg"/>
+            </div>
+            <div class="link-block left-block">
+                <img class="rk" src="../../public/img/donat.jpg"/>
+            </div>
+            <div class="link-block left-block">
+                <img class="rk" src="../../public/img/h-s1.jpg"/>
+            </div>
+            <div class="link-block left-block">
+                <p class="link-block-title">Наши авторы</p>
+                <li class="link-block-list">&#9658; Знакомьтесь: нашего полку прибыло!</li>
+                <li class="link-block-list">&#9658; Первые шаги на портале</li>
+                <li class="link-block-list">&#9658; Правила портала</li>
+            </div>
+            <div class="link-block left-block">
+                <li class="link-block-list">&#9658; Размышления о литературном труде</li>
+            </div>
+            <div class="link-block left-block">
+                <li class="link-block-list">&#9658; Новости и объявления</li>
+                <li class="link-block-list">&#9658; Блиц-конкурсы</li>
+                <li class="link-block-list">&#9658; Тема недели</li>
+                <li class="link-block-list">&#9658; Диалоги, дискуссии, обсуждения</li>
+                <li class="link-block-list">&#9658; С днем рождения!</li>
+                <li class="link-block-list">&#9658; Клуб мудрецов</li>
+                <li class="link-block-list">&#9658; Наши Бенефисы</li>
+            </div>
+            <div class="link-block left-block">
+                <li class="link-block-list">&#9658; Книга предложений</li>
+            </div>
+            <div class="link-block left-block">
+                <p class="link-block-title">Писатели России</p>
+                <p class="link-block-title">Центральный ФО</p>
+                <li class="link-block-list">&#9658; Москва и область</li>
+                <li class="link-block-list">&#9658; Рязанская область</li>
+                <li class="link-block-list">&#9658; Липецкая область</li>
+                <li class="link-block-list">&#9658; Тамбовская область</li>
+                <li class="link-block-list">&#9658; Белгородская область</li>
+                <li class="link-block-list">&#9658; Курская область</li>
+                <li class="link-block-list">&#9658; Ивановская область</li>
+                <li class="link-block-list">&#9658; Ярославская область</li>
+                <li class="link-block-list">&#9658; Калужская область</li>
+                <li class="link-block-list">&#9658; Воронежская область</li>
+                <li class="link-block-list">&#9658; Костромская область</li>
+                <li class="link-block-list">&#9658; Тверская область</li>
+                <li class="link-block-list">&#9658; Оровская область</li>
+                <li class="link-block-list">&#9658; Смоленская область</li>
+                <li class="link-block-list">&#9658; Тульская область</li>
+
+                <p class="link-block-title">Северо-Западный ФО</p>
+                <li class="link-block-list">&#9658; Санкт-Петербург и Ленинградская область </li>
+                <li class="link-block-list">&#9658; Мурманская область</li>
+                <li class="link-block-list">&#9658; Архангельская область</li>
+                <li class="link-block-list">&#9658; Калининградская область</li>
+                <li class="link-block-list">&#9658; Республика Карелия</li>
+                <li class="link-block-list">&#9658; Вологодская область</li>
+                <li class="link-block-list">&#9658; Псковская область</li>
+                <li class="link-block-list">&#9658; Новгородская область</li>
+
+                <p class="link-block-title">Южный ФО</p>
+                <li class="link-block-list">&#9658; Ростовская область </li>
+                <li class="link-block-list">&#9658; Краснодарский край</li>
+                <li class="link-block-list">&#9658; Волгоградская область</li>
+                <li class="link-block-list">&#9658; Республика Адыгея</li>
+                <li class="link-block-list">&#9658; Астраханская область</li>
+                <li class="link-block-list">&#9658; Город Севастополь</li>
+                <li class="link-block-list">&#9658; Республика Крым</li>
+                <li class="link-block-list">&#9658; Донецкая народная республика</li>
+                <li class="link-block-list">&#9658; Луганская народная республика</li>
+
+                <p class="link-block-title">Северо-Кавказский ФО</p>
+                <li class="link-block-list">&#9658; Северная Осетия </li>
+                <li class="link-block-list">&#9658; Алания</li>
+                <li class="link-block-list">&#9658; Республика Дагестан</li>
+                <li class="link-block-list">&#9658; Ставропольский край</li>
+
+                <p class="link-block-title">Уральский ФО</p>
+                <li class="link-block-list">&#9658; Cвердловская область</li>
+                <li class="link-block-list">&#9658; Тюменская область</li>
+                <li class="link-block-list">&#9658; Челябинская область</li>
+                <li class="link-block-list">&#9658; Курганская область</li>
+
+                <p class="link-block-title">Сибирский ФО</p>
+                <li class="link-block-list">&#9658; Республика Алтай</li>
+                <li class="link-block-list">&#9658; Алтайcкий край</li>
+                <li class="link-block-list">&#9658; Республика Хакассия</li>
+                <li class="link-block-list">&#9658; Красноярский край</li>
+                <li class="link-block-list">&#9658; Омская область</li>
+                <li class="link-block-list">&#9658; Кемеровская область</li>
+                <li class="link-block-list">&#9658; Иркутская область</li>
+                <li class="link-block-list">&#9658; Новосибирская область</li>
+                <li class="link-block-list">&#9658; Томская область</li>
+
+                <p class="link-block-title">Дальневосточный ФО</p>
+                <li class="link-block-list">&#9658; Магаданская область</li>
+                <li class="link-block-list">&#9658; Приморский край</li>
+                <li class="link-block-list">&#9658; Cахалинская область</li>
+                <p class="link-block-title">Писатели Зарубежья</p>
+                <p class="link-block-title">Писатели Украины</p>
+                <p class="link-block-title">Писатели Белоруссии</p>
+                <p class="link-block-title">Писатели Молдавии</p>
+                <p class="link-block-title">Писатели Азербайджана</p>
+                <p class="link-block-title">Писатели Казахстана</p>
+                <p class="link-block-title">Писатели Узбекистана</p>
+                <p class="link-block-title">Писатели Германии</p>
+                <p class="link-block-title">Писатели Франции</p>
+                <p class="link-block-title">Писатели Болгарии</p>
+                <p class="link-block-title">Писатели Испании</p>
+                <p class="link-block-title">Писатели Литвы</p>
+                <p class="link-block-title">Писатели Латвии</p>
+                <p class="link-block-title">Писатели Финляндии</p>
+                <p class="link-block-title">Писатели Израиля</p>
+                <p class="link-block-title">Писатели США</p>
+                <p class="link-block-title">Писатели Канады</p>
+            </div>
+        </div>
 
 
+        <Block class="container"></Block>
+
+        <div class="right-blocks">
+            <div class="header__block right-block">
+                <p class="header__block-title">Невеста почтенного возраста</p>
+                <img class="rk" src="../../public/img/nevesta.jpg"/>
+                <li class="header-list">Невеста почтенного возраста</li>
+            </div>
+
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/new.gif"/>
+                <li class="link-block-list">&#9658; Устав, Положения, документы для приема</li>
+                <li class="link-block-list">&#9658; Билеты МСП</li>
+                <li class="link-block-list">&#9658; Форум для членов МСП</li>
+            </div>
+
+            <div class="link-block right-block">
+                <p class="link-block-title">Состав МСП <br>"Новый Современник"</p>
+                <li class="link-block-list">&#9658; Список Действительных членов МСП</li>
+                <li class="link-block-list">&#9658; Список членов МСП</li>
+                <li class="link-block-list">&#9658; Планета Рать</li>
+            </div>
+
+            <div class="link-block right-block">
+                <p class="link-block-title">Региональные отделения МСП "Новый Современник"</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Литературные объединения "Новый Современник"</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Льготы для членов "Новый Современник"</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Реквизиты и способы оплаты по МСП, издательству и порталу</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Организация конкурсов и рейтинги</p>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/redCat.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/whoIsWho.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Литературные объединения</p>
+                <li class="link-block-list">&#9658; Союз писателей ДНР</li>
+                <li class="link-block-list">&#9658; "Серебряная ладья"</li>
+                <li class="link-block-list">&#9658; "Остров вдохновения"</li>
+                <li class="link-block-list">&#9658; Союз литераторов <br> "Перо и слово"</li>
+                <p class="link-block-title">Литературные организации и проекты по регионам России</p>
+                <li class="link-block-list">&#9658; Воронежская область</li>
+                <li class="link-block-list">&#9658; Рязанская область</li>
+                <li class="link-block-list">&#9658; Рязанская область</li>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/kab-kritikov.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/u-kamina.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/master-k.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Наградные билеты МСП "Новый Современник"</p>
+                <p class="link-block-title">Николай Вуколов</p>
+                <p class="link-block-title">Валентина Тимонина</p>
+                <p class="link-block-title">Сергей Малашко</p>
+                <p class="link-block-title">Ол Томский</p>
+                <p class="link-block-title">Дмитрий Долгов</p>
+                <p class="link-block-title">Сергей Ворошилов</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Как стать автором книги всего за 100 слов</p>
+                <img class="rk" src="../../public/img/100slov.jpg"/>
+                <p class="link-block-title">Положение о проекте</p>
+                <p class="link-block-title">Общий форум проекта</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- <Menu class="container"></Menu> -->
 </template>
 
 <script>
 import HomePage from "./components/HomePage.vue";
-import Menu from "./components/Menu.vue";
+// import Menu from "./components/Menu.vue";
 import Block from "./components/Block.vue";
+import axios from "axios";
+import router from "./router";
+import store from "./store/store";
+import mapState from "vuex/dist/vuex.mjs";
+import mapActions from "vuex/dist/vuex.mjs";
 
 
 export default {
     name: "App",
-    components: { HomePage, Menu, Block},
+    components: {Block},
+    data() {
+        return ({
+                login: '',
+                password: ''
+            }
+        )
+    },
 
+    computed:{
+        ...mapState['state']
+    },
+
+    methods: {
+        ...mapActions['login'],
+
+        loginFunc() {
+
+            let data = {
+                login: this.login,
+                password: this.password
+            }
+                axios.post('/login', data).then((response) => {
+                    console.log(response.data)
+                    if (response.data !== '') {
+                        let payload = {
+                            idAuthor: response.data.idUser,
+                            authorName: response.data.nameUser,
+                            login: response.data.login,
+                            books: response.data.books,
+                        }
+                        this.$store.dispatch('login', payload)
+                        router.push({name: 'HomePage'})
+                    }
+                })
+        }
+    }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+
+
 body {
     margin: 0 auto;
     background-color: #c6dcf2;
-    font-family: Montserrat, sans-serif;}
+    font-family: Montserrat, sans-serif;
+}
 
 .container {
     margin: 0 auto;
-    width: 1100px;
-    border: 1px solid red;
+    width: 1400px;
+    /*border: 1px solid red;*/
     padding: 20px 10px;
     /* background-color: rgb(5, 134, 163); */
 
 }
 
-li{
+li {
     list-style: none;
 }
-.logo-container{
-    width: 600px;
+
+.logo-container {
+    /* width: 800px; */
     align-items: center;
     text-align: center;
     margin: 0 auto;
@@ -89,7 +392,7 @@ li{
 }
 
 .header {
-        /* height: 100px; */
+    /* height: 100px; */
     background-color: #C6DCF2;
     display: flex;
     /* background-blend-mode: luminosity; */
@@ -97,13 +400,17 @@ li{
     justify-content: space-around;
     padding-top: 10px;
 }
-.header__left{
+
+.header__block {
     width: 180px;
     border: 2px solid white;
     background-color: #3b5e97;
+    outline: solid 3px #3b5e97;
+
 }
-.header__left-title{
-    border: 2px solid white;
+
+.header__block-title {
+    border-bottom: 2px solid white;
     margin: 1px 1px 10px 1px;
     text-align: center;
     color: white;
@@ -112,44 +419,49 @@ li{
     /* letter-spacing: 1px; */
     font-weight: 600;
     /* font-family: monospace; */
+    /*font-family: monospace;*/
 }
-.header-list{
 
+.header-list {
     margin: 1px;
     text-align: center;
     color: white;
     font-size: 12px;
     padding: 5px 0;
-    font-family: monospace;
+    /*font-family: monospace;*/
     cursor: pointer;
 }
-.header-list:not(:last-child){
+
+.header-list:not(:last-child) {
     border-bottom: 2px solid white;
 }
-.header__title{
+
+.header__title {
     border: 1px solid #3b5e97;
     background-color: #3b5e97;
     /* text-align: center; */
-    width: 600px;
-    text-transform:none;
+    text-transform: none;
     align-items: center;
     margin: 0 auto;
 }
-.header__title h1{
+
+.header__title h1 {
     /* width: 500px; */
     text-align: center;
     /* font-family: 'Comfortaa', cursive; */
+    font-family: 'Montserrat', cursive;
 
 }
-.header__group{
+
+.header__group {
     display: flex;
     justify-content: space-between;
-    width: 600px;
-    text-transform: uppercase;
+
     align-items: center;
     margin: 0 auto;
 }
-.header__subtitle{
+
+.header__subtitle {
 
     text-align: center;
     letter-spacing: 1px;
@@ -158,24 +470,25 @@ li{
 .logo {
     /* margin-left: 100px; */
     /* margin-top: 10px; */
-    width: 601px;
+    width: 550px;
     /* height: 80px; */
 }
+
 .autorisation {
-    border: 2px solid white;
-    /* margin-top: auto; */
+    padding-top: 5px;
     width: 300px;
-    margin: 10px auto;
     font-size: 12px;
 }
+
 .autorisation__title {
     margin: 0;
     background-color: #3b5e97;
 }
-.autorisation__form >div{
+
+.autorisation__form > div {
     display: flex;
     justify-content: space-between;
-    width: 220px;
+    width: 250px;
     margin: 10px auto;
     align-items: center;
 }
@@ -189,13 +502,14 @@ li{
 
 }
 
-.autorisation__subtitle button{
+.autorisation__subtitle button {
     background-color: #3b5e97;
     color: white;
     border: 1px solid;
     padding: 5px 10px;
     border-radius: 2px;
     /* font-family: cursive; */
+    /*font-family: cursive;*/
 }
 
 
@@ -219,6 +533,7 @@ h3,
 h4 {
     /* text-transform: uppercase; */
     /* font-family: 'Comfortaa', cursive; */
+    font-family: 'Montserrat', cursive;
     font-size: 16px;
     line-height: 26px;
     font-weight: 300;
@@ -226,6 +541,7 @@ h4 {
     margin-bottom: 1em;
     text-align: center;
 }
+
 .content {
     position: relative;
     top: -287px;
@@ -234,11 +550,105 @@ h4 {
 }
 
 .form_text {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     line-height: 26px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: gray;
-}</style>
+}
+#navbar {
+    background-color: #C6DCF2;
+    margin: 0 auto;
+}
+
+#navbar ul {
+    padding: 0 1px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 10px 0 0 0;
+}
+.li-btn{
+    background-color: #abcdf066;
+    width: 100%;
+    height: 30px;
+    border: 1px solid white;
+    font-size: 12px;
+    /* padding: 0 5px; */
+    cursor: pointer;
+    font-weight: 600;
+    color: #3b5e97;
+    border-radius: 5px;
+}
+
+#navbar ul li {
+    /* border-top: solid 1px #e3e3e3; */
+    padding: 3px;
+    font-size: 13px;
+}
+
+#navbar ul li a {
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+}
+
+.blocks{
+    position:relative;
+    display: flex;
+}
+
+.right-blocks{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 20px 10px;
+}
+.right-block, .left-block{
+
+    margin-bottom: 20px;
+
+}
+
+.link-block {
+    width: 180px;
+    border: 2px solid white;
+    background-color: #C6DCF2;
+    outline: solid 3px #3b5e97;
+    color: #3b5e97;
+
+}
+.link-block-title {
+    background-color: #3b5e97;
+    /* border-bottom: 2px solid white; */
+    margin: 1px 1px 1px 1px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 2px;
+    line-height: 1.5em;
+
+    font-weight: 400;
+
+}
+
+.link-block-list {
+    margin: 1px;
+    text-align: start;
+    color: #3b5e97;
+    font-size: 12px;
+    padding: 5px 2px;
+    /*font-family: monospace;*/
+    cursor: pointer;
+}
+
+.link-block-list:not(:last-child) {
+    border-bottom: 2px solid white;
+}
+
+</style>

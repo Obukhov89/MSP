@@ -6,4 +6,8 @@ export default [
         name: 'HomePage',
         component: HomePage,
     },
+    {
+        path: '/news',
+
+    }
 ]
