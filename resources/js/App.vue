@@ -133,6 +133,7 @@
                 <li class="link-block-list">&#9658; Книга предложений</li>
             </div>
             <div class="link-block left-block">
+<<<<<<< HEAD
                 <p class="link-block-title">Писатели России</p>
                 <p class="link-block-title">Центральный ФО</p>
                 <li class="link-block-list">&#9658; Москва и область</li>
@@ -218,6 +219,91 @@
                 <p class="link-block-title">Писатели Канады</p>
             </div>
         </div>
+=======
+                <CitySelect class="link-block-title "></CitySelect>
+            </div>
+        </div>
+        <Block class="container"></Block>
+        <div class="right-blocks">
+            <div class="header__block right-block">
+                <p class="header__block-title">Невеста почтенного возраста</p>
+                <img class="rk" src="../../public/img/nevesta.jpg"/>
+                <li class="header-list">Невеста почтенного возраста</li>
+            </div>
+
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/new.gif"/>
+                <li class="link-block-list">&#9658; Устав, Положения, документы для приема</li>
+                <li class="link-block-list">&#9658; Билеты МСП</li>
+                <li class="link-block-list">&#9658; Форум для членов МСП</li>
+            </div>
+
+            <div class="link-block right-block">
+                <p class="link-block-title">Состав МСП <br>"Новый Современник"</p>
+                <li class="link-block-list">&#9658; Список Действительных членов МСП</li>
+                <li class="link-block-list">&#9658; Список членов МСП</li>
+                <li class="link-block-list">&#9658; Планета Рать</li>
+            </div>
+
+            <div class="link-block right-block">
+                <p class="link-block-title">Региональные отделения МСП "Новый Современник"</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Литературные объединения "Новый Современник"</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Льготы для членов "Новый Современник"</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Реквизиты и способы оплаты по МСП, издательству и порталу</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Организация конкурсов и рейтинги</p>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/redCat.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/whoIsWho.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Литературные объединения</p>
+                <li class="link-block-list">&#9658; Союз писателей ДНР</li>
+                <li class="link-block-list">&#9658; "Серебряная ладья"</li>
+                <li class="link-block-list">&#9658; "Остров вдохновения"</li>
+                <li class="link-block-list">&#9658; Союз литераторов <br> "Перо и слово"</li>
+                <p class="link-block-title">Литературные организации и проекты по регионам России</p>
+                <li class="link-block-list">&#9658; Воронежская область</li>
+                <li class="link-block-list">&#9658; Рязанская область</li>
+                <li class="link-block-list">&#9658; Рязанская область</li>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/kab-kritikov.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/u-kamina.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <img class="rk" src="../../public/img/master-k.jpg"/>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Наградные билеты МСП "Новый Современник"</p>
+                <p class="link-block-title">Николай Вуколов</p>
+                <p class="link-block-title">Валентина Тимонина</p>
+                <p class="link-block-title">Сергей Малашко</p>
+                <p class="link-block-title">Ол Томский</p>
+                <p class="link-block-title">Дмитрий Долгов</p>
+                <p class="link-block-title">Сергей Ворошилов</p>
+            </div>
+            <div class="link-block right-block">
+                <p class="link-block-title">Как стать автором книги всего за 100 слов</p>
+                <img class="rk" src="../../public/img/100slov.jpg"/>
+                <p class="link-block-title">Положение о проекте</p>
+                <p class="link-block-title">Общий форум проекта</p>
+            </div>
+        </div>
+    </div>
+>>>>>>> f6d555f
 
 
         <Block class="container"></Block>
@@ -307,7 +393,11 @@
 
 <script>
 import HomePage from "./components/HomePage.vue";
+<<<<<<< HEAD
 // import Menu from "./components/Menu.vue";
+=======
+import CitySelect from "./components/CitySelect.vue";
+>>>>>>> f6d555f
 import Block from "./components/Block.vue";
 import axios from "axios";
 import router from "./router";
@@ -318,6 +408,7 @@ import mapActions from "vuex/dist/vuex.mjs";
 
 export default {
     name: "App",
+<<<<<<< HEAD
     components: {Block},
     data() {
         return ({
@@ -327,6 +418,17 @@ export default {
         )
     },
 
+=======
+    components: {Block, CitySelect},
+    data() {
+        return ({
+                login: '',
+                password: '',
+
+            })
+    },
+
+>>>>>>> f6d555f
     computed:{
         ...mapState['state']
     },
@@ -625,16 +727,45 @@ h4 {
 }
 .link-block-title {
     background-color: #3b5e97;
+<<<<<<< HEAD
     /* border-bottom: 2px solid white; */
+=======
+    /* border-bottom: 1px solid white; */
+>>>>>>> f6d555f
     margin: 1px 1px 1px 1px;
     text-align: center;
     color: white;
     font-size: 14px;
     padding: 2px;
     line-height: 1.5em;
+<<<<<<< HEAD
 
     font-weight: 400;
 
+=======
+    font-weight: 400;
+}
+.link-block-title--left{
+    text-align: start;
+    letter-spacing: -0.2px;
+    font-size: 12px;
+}
+.link-block-title p{
+    /* height: 30px; */
+    padding: 10px 2px;
+}
+
+.link-block-subtitle {
+    background-color: #C6DCF2;
+    /* border-bottom: 1px solid white; */
+    margin: 1px 1px 1px 1px;
+    text-align: left;
+    color: #3b5e97;
+    font-size: 12px;
+    padding: 2px;
+    line-height: 1.5em;
+    /* font-weight: 400; */
+>>>>>>> f6d555f
 }
 
 .link-block-list {
@@ -647,7 +778,11 @@ h4 {
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 .link-block-list:not(:last-child) {
+=======
+.link-block-title:not(:last-child) {
+>>>>>>> f6d555f
     border-bottom: 2px solid white;
 }
 
