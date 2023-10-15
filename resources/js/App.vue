@@ -27,6 +27,7 @@
                             <button class="autorisation__btn">Вход</button>
                             <input type="checkbox"> Запомнить меня
                         </div>
+                        <p href="">Регистрация на портале</p>
                         <p href="">Забыли пароль?</p>
                     </form>
                 </div>
@@ -133,181 +134,10 @@
                 <li class="link-block-list">&#9658; Книга предложений</li>
             </div>
             <div class="link-block left-block">
-<<<<<<< HEAD
-                <p class="link-block-title">Писатели России</p>
-                <p class="link-block-title">Центральный ФО</p>
-                <li class="link-block-list">&#9658; Москва и область</li>
-                <li class="link-block-list">&#9658; Рязанская область</li>
-                <li class="link-block-list">&#9658; Липецкая область</li>
-                <li class="link-block-list">&#9658; Тамбовская область</li>
-                <li class="link-block-list">&#9658; Белгородская область</li>
-                <li class="link-block-list">&#9658; Курская область</li>
-                <li class="link-block-list">&#9658; Ивановская область</li>
-                <li class="link-block-list">&#9658; Ярославская область</li>
-                <li class="link-block-list">&#9658; Калужская область</li>
-                <li class="link-block-list">&#9658; Воронежская область</li>
-                <li class="link-block-list">&#9658; Костромская область</li>
-                <li class="link-block-list">&#9658; Тверская область</li>
-                <li class="link-block-list">&#9658; Оровская область</li>
-                <li class="link-block-list">&#9658; Смоленская область</li>
-                <li class="link-block-list">&#9658; Тульская область</li>
-
-                <p class="link-block-title">Северо-Западный ФО</p>
-                <li class="link-block-list">&#9658; Санкт-Петербург и Ленинградская область </li>
-                <li class="link-block-list">&#9658; Мурманская область</li>
-                <li class="link-block-list">&#9658; Архангельская область</li>
-                <li class="link-block-list">&#9658; Калининградская область</li>
-                <li class="link-block-list">&#9658; Республика Карелия</li>
-                <li class="link-block-list">&#9658; Вологодская область</li>
-                <li class="link-block-list">&#9658; Псковская область</li>
-                <li class="link-block-list">&#9658; Новгородская область</li>
-
-                <p class="link-block-title">Южный ФО</p>
-                <li class="link-block-list">&#9658; Ростовская область </li>
-                <li class="link-block-list">&#9658; Краснодарский край</li>
-                <li class="link-block-list">&#9658; Волгоградская область</li>
-                <li class="link-block-list">&#9658; Республика Адыгея</li>
-                <li class="link-block-list">&#9658; Астраханская область</li>
-                <li class="link-block-list">&#9658; Город Севастополь</li>
-                <li class="link-block-list">&#9658; Республика Крым</li>
-                <li class="link-block-list">&#9658; Донецкая народная республика</li>
-                <li class="link-block-list">&#9658; Луганская народная республика</li>
-
-                <p class="link-block-title">Северо-Кавказский ФО</p>
-                <li class="link-block-list">&#9658; Северная Осетия </li>
-                <li class="link-block-list">&#9658; Алания</li>
-                <li class="link-block-list">&#9658; Республика Дагестан</li>
-                <li class="link-block-list">&#9658; Ставропольский край</li>
-
-                <p class="link-block-title">Уральский ФО</p>
-                <li class="link-block-list">&#9658; Cвердловская область</li>
-                <li class="link-block-list">&#9658; Тюменская область</li>
-                <li class="link-block-list">&#9658; Челябинская область</li>
-                <li class="link-block-list">&#9658; Курганская область</li>
-
-                <p class="link-block-title">Сибирский ФО</p>
-                <li class="link-block-list">&#9658; Республика Алтай</li>
-                <li class="link-block-list">&#9658; Алтайcкий край</li>
-                <li class="link-block-list">&#9658; Республика Хакассия</li>
-                <li class="link-block-list">&#9658; Красноярский край</li>
-                <li class="link-block-list">&#9658; Омская область</li>
-                <li class="link-block-list">&#9658; Кемеровская область</li>
-                <li class="link-block-list">&#9658; Иркутская область</li>
-                <li class="link-block-list">&#9658; Новосибирская область</li>
-                <li class="link-block-list">&#9658; Томская область</li>
-
-                <p class="link-block-title">Дальневосточный ФО</p>
-                <li class="link-block-list">&#9658; Магаданская область</li>
-                <li class="link-block-list">&#9658; Приморский край</li>
-                <li class="link-block-list">&#9658; Cахалинская область</li>
-                <p class="link-block-title">Писатели Зарубежья</p>
-                <p class="link-block-title">Писатели Украины</p>
-                <p class="link-block-title">Писатели Белоруссии</p>
-                <p class="link-block-title">Писатели Молдавии</p>
-                <p class="link-block-title">Писатели Азербайджана</p>
-                <p class="link-block-title">Писатели Казахстана</p>
-                <p class="link-block-title">Писатели Узбекистана</p>
-                <p class="link-block-title">Писатели Германии</p>
-                <p class="link-block-title">Писатели Франции</p>
-                <p class="link-block-title">Писатели Болгарии</p>
-                <p class="link-block-title">Писатели Испании</p>
-                <p class="link-block-title">Писатели Литвы</p>
-                <p class="link-block-title">Писатели Латвии</p>
-                <p class="link-block-title">Писатели Финляндии</p>
-                <p class="link-block-title">Писатели Израиля</p>
-                <p class="link-block-title">Писатели США</p>
-                <p class="link-block-title">Писатели Канады</p>
-            </div>
-        </div>
-=======
                 <CitySelect class="link-block-title "></CitySelect>
             </div>
         </div>
         <Block class="container"></Block>
-        <div class="right-blocks">
-            <div class="header__block right-block">
-                <p class="header__block-title">Невеста почтенного возраста</p>
-                <img class="rk" src="../../public/img/nevesta.jpg"/>
-                <li class="header-list">Невеста почтенного возраста</li>
-            </div>
-
-            <div class="link-block right-block">
-                <img class="rk" src="../../public/img/new.gif"/>
-                <li class="link-block-list">&#9658; Устав, Положения, документы для приема</li>
-                <li class="link-block-list">&#9658; Билеты МСП</li>
-                <li class="link-block-list">&#9658; Форум для членов МСП</li>
-            </div>
-
-            <div class="link-block right-block">
-                <p class="link-block-title">Состав МСП <br>"Новый Современник"</p>
-                <li class="link-block-list">&#9658; Список Действительных членов МСП</li>
-                <li class="link-block-list">&#9658; Список членов МСП</li>
-                <li class="link-block-list">&#9658; Планета Рать</li>
-            </div>
-
-            <div class="link-block right-block">
-                <p class="link-block-title">Региональные отделения МСП "Новый Современник"</p>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Литературные объединения "Новый Современник"</p>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Льготы для членов "Новый Современник"</p>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Реквизиты и способы оплаты по МСП, издательству и порталу</p>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Организация конкурсов и рейтинги</p>
-            </div>
-            <div class="link-block right-block">
-                <img class="rk" src="../../public/img/redCat.jpg"/>
-            </div>
-            <div class="link-block right-block">
-                <img class="rk" src="../../public/img/whoIsWho.jpg"/>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Литературные объединения</p>
-                <li class="link-block-list">&#9658; Союз писателей ДНР</li>
-                <li class="link-block-list">&#9658; "Серебряная ладья"</li>
-                <li class="link-block-list">&#9658; "Остров вдохновения"</li>
-                <li class="link-block-list">&#9658; Союз литераторов <br> "Перо и слово"</li>
-                <p class="link-block-title">Литературные организации и проекты по регионам России</p>
-                <li class="link-block-list">&#9658; Воронежская область</li>
-                <li class="link-block-list">&#9658; Рязанская область</li>
-                <li class="link-block-list">&#9658; Рязанская область</li>
-            </div>
-            <div class="link-block right-block">
-                <img class="rk" src="../../public/img/kab-kritikov.jpg"/>
-            </div>
-            <div class="link-block right-block">
-                <img class="rk" src="../../public/img/u-kamina.jpg"/>
-            </div>
-            <div class="link-block right-block">
-                <img class="rk" src="../../public/img/master-k.jpg"/>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Наградные билеты МСП "Новый Современник"</p>
-                <p class="link-block-title">Николай Вуколов</p>
-                <p class="link-block-title">Валентина Тимонина</p>
-                <p class="link-block-title">Сергей Малашко</p>
-                <p class="link-block-title">Ол Томский</p>
-                <p class="link-block-title">Дмитрий Долгов</p>
-                <p class="link-block-title">Сергей Ворошилов</p>
-            </div>
-            <div class="link-block right-block">
-                <p class="link-block-title">Как стать автором книги всего за 100 слов</p>
-                <img class="rk" src="../../public/img/100slov.jpg"/>
-                <p class="link-block-title">Положение о проекте</p>
-                <p class="link-block-title">Общий форум проекта</p>
-            </div>
-        </div>
-    </div>
->>>>>>> f6d555f
-
-
-        <Block class="container"></Block>
-
         <div class="right-blocks">
             <div class="header__block right-block">
                 <p class="header__block-title">Невеста почтенного возраста</p>
@@ -393,11 +223,9 @@
 
 <script>
 import HomePage from "./components/HomePage.vue";
-<<<<<<< HEAD
-// import Menu from "./components/Menu.vue";
-=======
+
 import CitySelect from "./components/CitySelect.vue";
->>>>>>> f6d555f
+
 import Block from "./components/Block.vue";
 import axios from "axios";
 import router from "./router";
@@ -408,17 +236,6 @@ import mapActions from "vuex/dist/vuex.mjs";
 
 export default {
     name: "App",
-<<<<<<< HEAD
-    components: {Block},
-    data() {
-        return ({
-                login: '',
-                password: ''
-            }
-        )
-    },
-
-=======
     components: {Block, CitySelect},
     data() {
         return ({
@@ -427,8 +244,6 @@ export default {
 
             })
     },
-
->>>>>>> f6d555f
     computed:{
         ...mapState['state']
     },
@@ -727,22 +542,12 @@ h4 {
 }
 .link-block-title {
     background-color: #3b5e97;
-<<<<<<< HEAD
-    /* border-bottom: 2px solid white; */
-=======
-    /* border-bottom: 1px solid white; */
->>>>>>> f6d555f
     margin: 1px 1px 1px 1px;
     text-align: center;
     color: white;
     font-size: 14px;
     padding: 2px;
     line-height: 1.5em;
-<<<<<<< HEAD
-
-    font-weight: 400;
-
-=======
     font-weight: 400;
 }
 .link-block-title--left{
@@ -765,7 +570,6 @@ h4 {
     padding: 2px;
     line-height: 1.5em;
     /* font-weight: 400; */
->>>>>>> f6d555f
 }
 
 .link-block-list {
@@ -778,11 +582,7 @@ h4 {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.link-block-list:not(:last-child) {
-=======
 .link-block-title:not(:last-child) {
->>>>>>> f6d555f
     border-bottom: 2px solid white;
 }
 
