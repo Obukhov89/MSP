@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -28,27 +30,26 @@ class UserController extends Controller
         $arrBook = [];
 
         foreach ($query as $item){
-            $passDb = $item->passw;
-            $arrUser = [
-                'idUser' => $item->id,
-                'nameUser' => $item->psname,
-                'login' => $item->login
+            if (Hash::check($credentials['password'], $item->password)){
+                $arrUser = [
+                    'idUser' => $item->id,
+                    'nameUser' => $item->name,
+                    'login' => $item->login,
+                    'oldId' => $item->oldId
             ];
-        }
 
-        $bookList = DB::select('select `title` from `docs2` where `aid` = :aid', ['aid' => $arrUser['idUser']]);
+                $bookList = DB::select('select `title` from `docs2` where `aid` = :aid', ['aid' => $arrUser['oldId']]);
+                foreach ($bookList as $val){
+                    $arrBook[] = $val->title;
+                }
+                $arrUser['books'] = $arrBook;
 
-        foreach ($bookList as $val){
-           $arrBook[] = $val->title;
-        }
+                echo json_encode($arrUser);
+            }
+            else{
+                json_encode(false);
+            }
 
-        $arrUser['books'] = $arrBook;
-
-        if ($passDb == $credentials['password']){
-            echo json_encode($arrUser);
-        }
-        else {
-            json_encode(false);
         }
     }
 }

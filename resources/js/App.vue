@@ -8,6 +8,7 @@
             <li class="header-list">Произведения номинации «Проза»</li>
             <li class="header-list">Произведения номинации «Поэзия»</li>
         </div>
+
         <div class="header__logo">
             <div class="logo-container header__content">
                 <h1 class="header__title">Портал Международного Союза писателей "Новый Современник"</h1>
@@ -20,14 +21,14 @@
                                 <input type="text" placeholder="" name="login" v-model="login">
                             </div>
                             <div>Пароль
-                                <input type="text" placeholder="" name="password" v-model="password">
+                                <input type="password" placeholder="" name="password" v-model="password">
                             </div>
                         </div>
                         <div class="autorisation__subtitle">
                             <button class="autorisation__btn">Вход</button>
                             <input type="checkbox"> Запомнить меня
                         </div>
-                        <p href="">Регистрация на портале</p>
+                        <p @click="showModal">Регистрация на портале</p>
                         <p href="">Забыли пароль?</p>
                     </form>
                 </div>
@@ -217,6 +218,9 @@
             </div>
         </div>
     </div>
+    <div v-if="this.isModalVisible">
+        <ModalRegistration isModalVisible = "true"/>
+    </div>
 
     <!-- <Menu class="container"></Menu> -->
 </template>
@@ -232,24 +236,41 @@ import router from "./router";
 import store from "./store/store";
 import mapState from "vuex/dist/vuex.mjs";
 import mapActions from "vuex/dist/vuex.mjs";
+import ModalRegistration from "./components/Modals/ModalRegistration.vue";
 
 
 export default {
     name: "App",
-    components: {Block, CitySelect},
+    components: {ModalRegistration, Block, CitySelect},
     data() {
         return ({
-                login: '',
-                password: '',
-
+            login: '',
+            password: '',
+            isModalVisible: false,
             })
     },
+
     computed:{
-        ...mapState['state']
+        ...mapState['state'],
+
+        state(){
+            return this.$store.state.modalRegistration
+        }
+    },
+
+    watch:{
+        state: function () {
+            this.isModalVisible = this.$store.state.modalRegistration
+        },
     },
 
     methods: {
-        ...mapActions['login'],
+        ...mapActions['login', 'showModalRegistration'],
+
+        showModal(){
+            this.$store.dispatch('showModalRegistration', true)
+            this.isModalVisible = this.$store.state.modalRegistration
+        },
 
         loginFunc() {
 
@@ -259,7 +280,7 @@ export default {
             }
                 axios.post('/login', data).then((response) => {
                     console.log(response.data)
-                    if (response.data !== '') {
+                    if (response.data !== false) {
                         let payload = {
                             idAuthor: response.data.idUser,
                             authorName: response.data.nameUser,
