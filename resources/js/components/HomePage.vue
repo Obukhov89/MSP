@@ -1,9 +1,9 @@
 <template>
     <div id="homepage" class="homepage-container">
         <div class="homepage__user">
-            <h3>ИМЯ</h3>
+            <h3>{{ userName }}</h3>
             <ul>
-                <li>Количество произведений: </li>
+                <li>Количество произведений: {{ countComposition }}</li>
                 <li>Получено рецензий: </li>
                 <li>Написано рецензий: </li>
                 <hr>
@@ -19,23 +19,65 @@
                     <div class="composition-name">Название произведения</div>
                     <div class="composition-genre">Жанр</div>
                 </div>
-                <ul>
-                    <li></li>
-                    <li></li>
-                </ul>
+                <table class="tableComposition">
+                    <tr v-for="item in nameComposition " :key="item">
+                        <td>{{ item.count }}</td>
+                        <td>{{ item.book }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import mapState from "vuex/dist/vuex.mjs";
+
 export default {
-    name: "HomePage"
+    name: "HomePage",
+
+    data(){
+        return {
+            userName: '',
+            countComposition:0,
+            nameComposition: []
+        }
+    },
+    computed:{
+        ...mapState['state'],
+        state() {
+            return this.$store.state.authorName
+        },
+    },
+    created() {
+        this.userName = this.$store.state.authorName
+        // this.countComposition = length.this.$store.state.books
+        //
+        // this.$store.state.books.forEach((items) => {
+        //     this.nameComposition.push(items)
+        // })
+    },
+
+    methods:{
+         addBooks(){
+            this.$store.state.books.forEach((item, idx) => {
+                this.nameComposition.push({count: idx + 1, book: item})
+            })
+             console.log(this.nameComposition)
+             this.countComposition = this.$store.state.books.length
+        }
+    },
+    beforeMount() {
+        this.addBooks()
+    }
 }
 </script>
 
 <style scoped>
 #homepage {
+    position: absolute;
+    left: 273px;
+    width: 970px;
     background-color: #C6DCF2;
     margin:0 auto;
 }
@@ -63,6 +105,19 @@ export default {
     justify-content: space-between;
     padding:10px;
     background-color: #C6DCF2;
+}
+
+.tableComposition{
+    width: 100%;
+}
+
+.tableComposition tr{
+    border: 1px solid gray;
+}
+
+.tableComposition td{
+    padding-left: 1rem;
+    border-bottom: 1px solid gray;
 }
 
 </style>
