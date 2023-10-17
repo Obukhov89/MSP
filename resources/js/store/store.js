@@ -6,7 +6,8 @@ const store = createStore({
         authorName: '',
         login: '',
         books: [],
-        modalRegistration: false
+        modalRegistration: false,
+        isAdmin: false
     },
     getters:{},
     actions:{
@@ -21,6 +22,10 @@ const store = createStore({
 
         closeModalRegistration({commit}, payload){
             commit('closeModalRegistration', payload)
+        },
+
+        adminEnter({commit}, payload){
+            commit('isAdmin', payload)
         }
     },
     mutations:{
@@ -38,6 +43,10 @@ const store = createStore({
 
         closeModalRegistration(state, payload) {
             state.modalRegistration = payload
+        },
+
+        isAdmin(state, payload){
+            state.isAdmin = payload
         }
 
     },

@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 //use http\Env\Request;
 use App\Models\Request_Registration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 class RegRequestController extends Controller
 {
     public function createRequest(Request $request)
@@ -41,5 +43,23 @@ class RegRequestController extends Controller
         $newRequest->save();
 
         echo json_encode($newRequest);
+    }
+
+    public function getTurnRequest()
+    {
+        $arrRequest = [];
+
+        $turnList = DB::select('select * from `request_registrations`
+                     join `roles` on `request_registrations`.`idRole` = `roles`.`id` where `status` = "new"');
+
+        foreach ($turnList as $list){
+            $arrRequest[] = [
+                'idRequest' => $list->idRequest,
+                'name' => $list->name,
+                'role' => $list->nameRole,
+                'about' => $list->aboutMe
+            ];
+        }
+        echo json_encode($arrRequest);
     }
 }

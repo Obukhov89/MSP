@@ -1,4 +1,5 @@
 import HomePage from "../components/HomePage.vue";
+import AdminPanel from "../components/AdminPanel/AdminPanel.vue";
 
 export default [
     {
@@ -8,6 +9,10 @@ export default [
     },
     {
         path: '/news',
-
+    },
+    {
+        path: '/admin',
+        name: 'AdminPanel',
+        component: AdminPanel
     }
 ]

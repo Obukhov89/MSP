@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login', function(Request $request){ return $request->user(); }]);
 Route::post('/requestRegistration', [\App\Http\Controllers\RegRequestController::class,
     'createRequest', function(Request $request){}]);
+Route::get('/getTurnRequest', [\App\Http\Controllers\RegRequestController::class, 'getTurnRequest']);
 
 
 

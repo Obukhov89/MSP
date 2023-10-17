@@ -28,6 +28,7 @@ class UserController extends Controller
 
         $arrUser = [];
         $arrBook = [];
+        $arrRoles = [];
 
         foreach ($query as $item){
             if (Hash::check($credentials['password'], $item->password)){
@@ -42,7 +43,16 @@ class UserController extends Controller
                 foreach ($bookList as $val){
                     $arrBook[] = $val->title;
                 }
+
+                $roleList = DB::select('select `idRole` from `users_and_roles` where `idUser` = :idUser',
+                                                                                ['idUser' => $arrUser['idUser']]);
+
+                foreach ($roleList as $rol){
+                    $arrRoles[] = $rol->idRole;
+                }
+
                 $arrUser['books'] = $arrBook;
+                $arrUser['roles'] = $arrRoles;
 
                 echo json_encode($arrUser);
             }

@@ -1,4 +1,7 @@
 <template>
+    <div v-if="this.isAdmin" class="adminBtn">
+        <button @click="pushAdmin">Панель андминистратора</button>
+    </div>
     <div class="container header">
         <div class="header__block">
             <p class="header__block-title">Платон мне друг...</p>
@@ -138,7 +141,7 @@
                 <CitySelect class="link-block-title "></CitySelect>
             </div>
         </div>
-        <Block class="container"></Block>
+
         <div class="right-blocks">
             <div class="header__block right-block">
                 <p class="header__block-title">Невеста почтенного возраста</p>
@@ -221,7 +224,7 @@
     <div v-if="this.isModalVisible">
         <ModalRegistration isModalVisible = "true"/>
     </div>
-
+    <Block class="container"></Block>
     <!-- <Menu class="container"></Menu> -->
 </template>
 
@@ -247,6 +250,7 @@ export default {
             login: '',
             password: '',
             isModalVisible: false,
+            isAdmin: false,
             })
     },
 
@@ -255,6 +259,10 @@ export default {
 
         state(){
             return this.$store.state.modalRegistration
+        },
+
+        isAdmin(){
+          return this.$store.state.isAdmin
         }
     },
 
@@ -262,10 +270,14 @@ export default {
         state: function () {
             this.isModalVisible = this.$store.state.modalRegistration
         },
+
+        isAdmin: function (){
+            this.isAdmin = this.$store.state.isAdmin
+        }
     },
 
     methods: {
-        ...mapActions['login', 'showModalRegistration'],
+        ...mapActions['login', 'showModalRegistration', 'adminEnter'],
 
         showModal(){
             this.$store.dispatch('showModalRegistration', true)
@@ -288,20 +300,29 @@ export default {
                             books: response.data.books,
                         }
                         this.$store.dispatch('login', payload)
+
+                        response.data.roles.forEach((item) => {
+                            console.log(item);
+                            if (item === 1){
+                                this.$store.dispatch('adminEnter', true)
+                                this.isAdmin = this.$store.state.isAdmin
+                            }
+                        })
                         router.push({name: 'HomePage'})
                     }
                 })
+        },
+
+        pushAdmin(){
+            router.push({name: 'AdminPanel'})
         }
+
     }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
-
-
 body {
     margin: 0 auto;
     background-color: #c6dcf2;
@@ -462,6 +483,23 @@ li {
     line-height: 26px;
     font-weight: 300;
     color: white;
+}
+
+.adminBtn{
+    height: 45px;
+    background-color: #3b5e97;
+    border: 2px solid gray;
+}
+
+.adminBtn button{
+    width: 200px;
+    height: 30px;
+    background: #ffffff;
+    border: none;
+    float: right;
+    color: #3b5e97;
+    margin-right: 3.5rem;
+    margin-top: 8px;
 }
 
 
