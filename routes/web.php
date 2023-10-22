@@ -26,6 +26,8 @@ Route::post('/requestRegistration', [\App\Http\Controllers\RegRequestController:
     'createRequest', function(Request $request){}]);
 Route::get('/getTurnRequest', [\App\Http\Controllers\RegRequestController::class, 'getTurnRequest']);
 
+Route::post('/saveRequest', [\App\Http\Controllers\RegRequestController::class, 'save', function(Request $request){}]);
+
 
 
 //Route::post('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc'], function(){ return view('welcome');});

@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -40,4 +42,50 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function login($arrData){
+
+
+        $query = DB::select('select * from `users` where `login` = :login', ['login' => $arrData['login']]);
+
+        $passDb = '';
+
+        $arrUser = [];
+        $arrBook = [];
+        $arrRoles = [];
+
+        foreach ($query as $item){
+            if (Hash::check($arrData['password'], $item->password)){
+                $arrUser = [
+                    'idUser' => $item->id,
+                    'nameUser' => $item->name,
+                    'login' => $item->login,
+                    'oldId' => $item->oldId
+                ];
+
+                $bookList = DB::select('select `title` from `docs2` where `aid` = :aid', ['aid' => $arrUser['oldId']]);
+                foreach ($bookList as $val){
+                    $arrBook[] = $val->title;
+                }
+
+                $roleList = DB::select('select `idRole` from `users_and_roles` where `idUser` = :idUser',
+                    ['idUser' => $arrUser['idUser']]);
+
+                foreach ($roleList as $rol){
+                    $arrRoles[] = $rol->idRole;
+                }
+
+                $arrUser['books'] = $arrBook;
+                $arrUser['roles'] = $arrRoles;
+
+
+                return json_encode($arrUser);
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+    }
 }

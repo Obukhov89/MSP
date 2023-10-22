@@ -69,7 +69,6 @@
             <li class="header-list">Золотые правила писателей</li>
         </div>
     </div>
-    <router-view/>
     <div class="container blocks">
         <div class="left-blocks">
             <div class="header__block left-block">
@@ -142,6 +141,7 @@
             </div>
         </div>
 
+        <router-view/>
         <div class="right-blocks">
             <div class="header__block right-block">
                 <p class="header__block-title">Невеста почтенного возраста</p>
@@ -224,12 +224,12 @@
     <div v-if="this.isModalVisible">
         <ModalRegistration isModalVisible = "true"/>
     </div>
-    <Block class="container"></Block>
+
     <!-- <Menu class="container"></Menu> -->
 </template>
 
 <script>
-import HomePage from "./components/HomePage.vue";
+import HomePage from "./components/Profile.vue";
 
 import CitySelect from "./components/CitySelect.vue";
 
@@ -240,6 +240,7 @@ import store from "./store/store";
 import mapState from "vuex/dist/vuex.mjs";
 import mapActions from "vuex/dist/vuex.mjs";
 import ModalRegistration from "./components/Modals/ModalRegistration.vue";
+// import {defineAsyncComponent} from "vue";
 
 
 export default {
@@ -308,13 +309,13 @@ export default {
                                 this.isAdmin = this.$store.state.isAdmin
                             }
                         })
-                        router.push({name: 'HomePage'})
+                        router.push({name: 'Profile'})
                     }
                 })
         },
 
         pushAdmin(){
-            router.push({name: 'AdminPanel'})
+            router.push({path: '/admin'})
         }
 
     }

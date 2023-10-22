@@ -51,11 +51,6 @@ export default {
     },
     created() {
         this.userName = this.$store.state.authorName
-        // this.countComposition = length.this.$store.state.books
-        //
-        // this.$store.state.books.forEach((items) => {
-        //     this.nameComposition.push(items)
-        // })
     },
 
     methods:{
@@ -75,11 +70,10 @@ export default {
 
 <style scoped>
 #homepage {
-    position: absolute;
-    left: 273px;
+    margin-left: 2rem;
     width: 970px;
     background-color: #C6DCF2;
-    margin:0 auto;
+    /*margin:0 auto;*/
 }
 #homepage h3 {
     text-align: center;

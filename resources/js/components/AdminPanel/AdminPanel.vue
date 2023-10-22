@@ -15,16 +15,7 @@
             <div class="adminpanel__text">
                 <h1>Управление регистрацией</h1>
             </div>
-            <table class="tableRequest">
-                <tr v-for="item in arrRequest" :key="item.idRequest">
-                    <td>{{item.idRequest}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.role}}</td>
-                    <td>{{item.about}}</td>
-                    <td><button class="acceptBtn">Принять запрос</button></td>
-                    <td><button class="rejectBtn">Отклонить запрос</button></td>
-                </tr>
-            </table>
+
         </div>
         <div class="adminpanel__window" v-show="isActive('tab-2')">
             <div class="adminpanel__text">
@@ -52,20 +43,18 @@
             </div>
         </div>
   </div>
-
-
-
+<!--    <TableRequest/>-->
   </template>
 
 <script>
 
-import axios from "axios";
+// import TableRequest from "./TableRequest.vue";
 
 export default {
     name: "AdminPanel",
+    // components: {TableRequest},
     data:()=>({
         activeTab: 'tab-1',
-        arrRequest : []
     }),
     methods: {
         setActive(tab){
@@ -75,26 +64,18 @@ export default {
             return this.activeTab === tab;
         },
 
-        getTurn(){
-            axios.get('/getTurnRequest').then((request) => {
-                request.data.forEach((item, index) => {
-                    this.arrRequest.push(item);
-                })
-            })
-        }
     },
-    beforeMount() {
-        this.getTurn()
-    }
+
 
 }
 </script>
 
 <style scoped>
 #adminpanel {
-    width: 1000px;
+    width: 970px;
     background-color: #C6DCF2;
-    margin: 0 auto;
+    margin-left: 2rem;
+    /*margin: 0 auto;*/
 }
 
 .adminpanel__name{

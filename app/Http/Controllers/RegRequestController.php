@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class RegRequestController extends Controller
 {
+    private Request_Registration $requestObj;
+
+    public function __construct()
+    {
+        $this->requestObj = new Request_Registration();
+    }
+
     public function createRequest(Request $request)
     {
         $newRequest = new Request_Registration();
@@ -40,26 +47,20 @@ class RegRequestController extends Controller
         $newRequest->idRole = $arrData['role'];
         $newRequest->status = $arrData['status'];
 
-        $newRequest->save();
+        $this->requestObj->save();
 
         echo json_encode($newRequest);
     }
 
     public function getTurnRequest()
     {
-        $arrRequest = [];
+       return $this->requestObj->getTurn();
+    }
 
-        $turnList = DB::select('select * from `request_registrations`
-                     join `roles` on `request_registrations`.`idRole` = `roles`.`id` where `status` = "new"');
+    public function save(Request $request)
+    {
+        $idRequest = $request->idRequest;
 
-        foreach ($turnList as $list){
-            $arrRequest[] = [
-                'idRequest' => $list->idRequest,
-                'name' => $list->name,
-                'role' => $list->nameRole,
-                'about' => $list->aboutMe
-            ];
-        }
-        echo json_encode($arrRequest);
+        return $this->requestObj->saveRequest($idRequest);
     }
 }
