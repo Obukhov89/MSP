@@ -41,7 +41,7 @@
             </div>
             <div id="navbar">
                 <ul class="navbar__list">
-                    <li> <button class="li-btn"> Главная</button></li>
+                    <li> <button class="li-btn" @click="goHomePage"> Главная</button></li>
                     <li> <button  class="li-btn">Новости и объявления</button></li>
                     <li> <button  class="li-btn"> Круглый стол</button></li>
                     <li> <button  class="li-btn"> Лента рецензий</button></li>
@@ -140,8 +140,12 @@
                 <CitySelect class="link-block-title "></CitySelect>
             </div>
         </div>
-
-        <router-view/>
+        <div class="router-view">
+            <router-view/>
+        </div>
+        <div v-if="newsVisible" class="news">
+            <Block/>
+        </div>
         <div class="right-blocks">
             <div class="header__block right-block">
                 <p class="header__block-title">Невеста почтенного возраста</p>
@@ -232,7 +236,6 @@
 import HomePage from "./components/Profile.vue";
 
 import CitySelect from "./components/CitySelect.vue";
-
 import Block from "./components/Block.vue";
 import axios from "axios";
 import router from "./router";
@@ -250,6 +253,7 @@ export default {
         return ({
             login: '',
             password: '',
+            newsVisible: true,
             isModalVisible: false,
             isAdmin: false,
             })
@@ -264,7 +268,13 @@ export default {
 
         isAdmin(){
           return this.$store.state.isAdmin
-        }
+        },
+
+        visibleNews(){
+            return this.$store.state.visibleNews
+        },
+
+
     },
 
     watch:{
@@ -274,7 +284,13 @@ export default {
 
         isAdmin: function (){
             this.isAdmin = this.$store.state.isAdmin
-        }
+        },
+
+        visibleNews: function (){
+            console.log(this.newsVisible)
+            this.newsVisible = this.$store.state.visibleNews
+        },
+
     },
 
     methods: {
@@ -301,6 +317,8 @@ export default {
                             books: response.data.books,
                         }
                         this.$store.dispatch('login', payload)
+                        this.$store.dispatch('hideNews')
+
 
                         response.data.roles.forEach((item) => {
                             console.log(item);
@@ -315,8 +333,18 @@ export default {
         },
 
         pushAdmin(){
+            this.$store.dispatch('hideNews')
             router.push({path: '/admin'})
+        },
+
+        goHomePage(){
+            router.push({path: '/'})
+            this.$store.dispatch('showNews')
         }
+
+    },
+
+    beforeMount() {
 
     }
 }

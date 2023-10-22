@@ -15,7 +15,7 @@
             <div class="adminpanel__text">
                 <h1>Управление регистрацией</h1>
             </div>
-
+                <TableRequest/>
         </div>
         <div class="adminpanel__window" v-show="isActive('tab-2')">
             <div class="adminpanel__text">
@@ -43,15 +43,17 @@
             </div>
         </div>
   </div>
-<!--    <TableRequest/>-->
+
   </template>
 
 <script>
 
-// import TableRequest from "./TableRequest.vue";
+
+import TableRequest from "./TableRequest.vue";
 
 export default {
     name: "AdminPanel",
+    components: {TableRequest},
     // components: {TableRequest},
     data:()=>({
         activeTab: 'tab-1',

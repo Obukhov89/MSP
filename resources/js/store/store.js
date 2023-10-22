@@ -7,7 +7,8 @@ const store = createStore({
         login: '',
         books: [],
         modalRegistration: false,
-        isAdmin: false
+        isAdmin: false,
+        visibleNews: true
     },
     getters:{},
     actions:{
@@ -22,6 +23,14 @@ const store = createStore({
 
         closeModalRegistration({commit}, payload){
             commit('closeModalRegistration', payload)
+        },
+
+        hideNews({commit}){
+            commit('hideNews')
+        },
+
+        showNews({commit}){
+            commit('showNews')
         },
 
         adminEnter({commit}, payload){
@@ -47,6 +56,14 @@ const store = createStore({
 
         isAdmin(state, payload){
             state.isAdmin = payload
+        },
+
+        hideNews(state) {
+            state.visibleNews = false
+        },
+
+        showNews(state) {
+            state.visibleNews = true
         }
 
     },

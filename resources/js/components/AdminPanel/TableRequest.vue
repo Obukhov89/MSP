@@ -6,7 +6,7 @@
             <td>{{ item.role }}</td>
             <td>{{ item.about }}</td>
             <td>
-                <button class="acceptBtn" @click="saveRequest">Принять запрос</button>
+                <button class="acceptBtn" @click="saveRequest(item.idRequest)">Принять запрос</button>
             </td>
             <td>
                 <button class="rejectBtn">Отклонить запрос</button>
@@ -36,9 +36,9 @@ export default {
                 })
             })
         },
-        saveRequest(){
-            console.log('ok');
-            axios.post('/saveRequest').then((request) => {
+        saveRequest(id){
+            let idRequest = {'idRequest': id}
+            axios.post('/saveRequest', idRequest).then((request) => {
                 console.log(request.data);
             })
         }
@@ -50,36 +50,6 @@ export default {
 </script>
 
 <style scoped>
-#adminpanel {
-    width: 1000px;
-    background-color: #C6DCF2;
-    margin: 0 auto;
-}
-
-.adminpanel__name{
-    text-align: center;
-    margin: 0;
-    border: 1px solid;
-    background-color: #3b5e97;
-    font-size: 20px;
-    padding: 5px;
-}
-
-.adminpanel__title2{
-    display: flex;
-    padding: 0;
-    justify-content: space-between;
-}
-
-.adminpanel__title{
-    display: flex;
-    padding: 0;
-    justify-content: space-between;
-}
-.adminpanel__window{
-    height: 10vh;
-    border: 2px solid  white;
-}
 .adminpanel__text h1{
     color: #000;
 }
@@ -111,6 +81,11 @@ export default {
     text-align: center;
 }
 
+.tableRequest td{
+    border-bottom: 1px solid #718096;
+   height: 80px;
+}
+
 .acceptBtn{
     width: 180px;
     height: 45px;
@@ -124,7 +99,7 @@ export default {
 .rejectBtn{
     width: 180px;
     height: 45px;
-    background: red;
+    background: #9f4848;
     border: none;
     color: white;
     font-size: 16px;

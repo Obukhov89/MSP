@@ -40,7 +40,7 @@ export default {
         return {
             userName: '',
             countComposition:0,
-            nameComposition: []
+            nameComposition: [],
         }
     },
     computed:{
@@ -48,6 +48,10 @@ export default {
         state() {
             return this.$store.state.authorName
         },
+
+        visibleNews(){
+            return this.$store.state.visibleNews
+        }
     },
     created() {
         this.userName = this.$store.state.authorName
@@ -63,7 +67,9 @@ export default {
         }
     },
     beforeMount() {
-        this.addBooks()
+        this.addBooks();
+        let payload = false;
+        this.$store.dispatch('hideNews', payload)
     }
 }
 </script>

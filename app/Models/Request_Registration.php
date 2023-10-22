@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class Request_Registration extends Model
 {
@@ -43,9 +44,48 @@ class Request_Registration extends Model
 
     public function saveRequest($idRequest)
     {
+        $dataUser = [];
         $turnItem = DB::select('select * from `request_registrations` where `idRequest` =:idRequest',
                                 ['idRequest' => $idRequest]);
 
-        return json_encode($turnItem);
+        foreach ($turnItem as $item){
+            $dataUser = [
+                'name' => $item->name,
+                'login' => $item->login,
+                'password' => $item->password,
+                'nikName' => $item -> nick,
+                'email' => $item->email,
+                'aboutMe' => $item->aboutMe,
+                'address' => $item->address,
+                'link' => $item->link,
+                'idRole' => $item->idRole
+            ];
+        }
+
+        $user = new User();
+
+        $user->name = $dataUser['name'];
+        $user->login = $dataUser['login'];
+        $user->password = Hash::make($dataUser['password']);
+        $user->nikName = $dataUser['nikName'];
+        $user->email = $dataUser['email'];
+        $user->aboutMe = $dataUser['aboutMe'];
+        $user->address = $dataUser['address'];
+        $user->link = $dataUser['link'];
+
+        $user->save();
+
+        $lastId = DB::select("select *  from `users` ORDER BY id DESC LIMIT 1");
+
+        $maxId = 0;
+        foreach ($lastId as $id){
+            $maxId = $id->id;
+        }
+
+        $rightWrite = DB::table('users_and_roles')->insert(['idUser' => $maxId, 'idRole' => $dataUser['idRole']]);
+
+        return json_encode($rightWrite);
+
+
     }
 }
