@@ -2,6 +2,7 @@ import Profile from "../components/Profile.vue";
 import AdminPanel from "../components/AdminPanel/AdminPanel.vue";
 import MainPage from "../components/MainPage.vue";
 import Block from "../components/Block.vue";
+import Article from "../components/Articles/Article.vue";
 
 export default [
     {
@@ -24,5 +25,13 @@ export default [
         path: '/admin',
         name: 'AdminPanel',
         component: AdminPanel
+    },
+    {
+        path: '/article/:authorId?/:textId?',
+        name: 'article',
+        component: Article,
+        props: {
+            authorId: 1
+        }
     }
 ]

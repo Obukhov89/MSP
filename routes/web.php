@@ -27,6 +27,7 @@ Route::post('/requestRegistration', [\App\Http\Controllers\RegRequestController:
 Route::get('/getTurnRequest', [\App\Http\Controllers\RegRequestController::class, 'getTurnRequest']);
 
 Route::post('/saveRequest', [\App\Http\Controllers\RegRequestController::class, 'save', function(Request $request){}]);
+Route::get('/article', [\App\Http\Controllers\ArticleController::class, 'getArticle']);
 
 
 

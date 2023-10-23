@@ -63,9 +63,13 @@ class User extends Authenticatable
                     'oldId' => $item->oldId
                 ];
 
-                $bookList = DB::select('select `title` from `docs2` where `aid` = :aid', ['aid' => $arrUser['oldId']]);
+                $bookList = DB::select('select `title`, `id` from `docs2` where `aid` = :aid', ['aid' => $arrUser['oldId']]);
                 foreach ($bookList as $val){
-                    $arrBook[] = $val->title;
+                    $arrBook[] =
+                        [
+                          'textId' => $val->id,
+                          'textTitle' => $val->title
+                        ];
                 }
 
                 $roleList = DB::select('select `idRole` from `users_and_roles` where `idUser` = :idUser',
