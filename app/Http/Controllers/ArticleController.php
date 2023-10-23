@@ -4,20 +4,25 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Article;
+use Illuminate\Http\Request;
+
 class ArticleController extends Controller
 {
-    public function getArticle(){
-        $path = storage_path('app/articles/2/27683.txt');
-        $text = '';
-        $file = file_get_contents($path);
-        $fh = fopen($path, 'r');
+    private Article $article;
 
-        while (!feof($fh)) {
-            $line = fgets($fh);
-            $text .= $line . PHP_EOL;
-        }
-        fclose($fh);
+    public function __construct()
+    {
+        $this->article = new Article();
+    }
 
-        echo json_encode($text);
+    public function getArticle(Request $request)
+    {
+        $authorId = $request->authorId;
+        $textId = $request->textId;
+
+       $art =  $this->article->getArticle($authorId, $textId);
+
+       return json_decode($art);
     }
 }

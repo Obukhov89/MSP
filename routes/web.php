@@ -27,9 +27,7 @@ Route::post('/requestRegistration', [\App\Http\Controllers\RegRequestController:
 Route::get('/getTurnRequest', [\App\Http\Controllers\RegRequestController::class, 'getTurnRequest']);
 
 Route::post('/saveRequest', [\App\Http\Controllers\RegRequestController::class, 'save', function(Request $request){}]);
-Route::get('/article', [\App\Http\Controllers\ArticleController::class, 'getArticle']);
-
-
+Route::post('/article', [\App\Http\Controllers\ArticleController::class, 'getArticle',  function(Request $request){}]);
 
 //Route::post('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc'], function(){ return view('welcome');});
 URL::forceScheme('https');

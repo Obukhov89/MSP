@@ -1,5 +1,7 @@
 <template>
-    <h1>Произведение здесь</h1>
+    <div class="container_article">
+        {{this.text}}
+    </div>
 </template>
 
 <script>
@@ -12,6 +14,7 @@ export default {
         return({
             authorId: this.$route.query.authorId,
             textId: this.$route.query.textId,
+            text: '',
         })
     },
 
@@ -19,8 +22,15 @@ export default {
         showArticle(){
             console.log(this.textId)
 
-            axios.get('/article').then((response) => {
+            let data = {
+                authorId: this.authorId,
+                textId: this.textId
+            }
+
+            axios.post('/article', data).then((response) => {
                 console.log(response.data);
+                let preText = JSON.stringify(response.data)
+                this.text =JSON.parse(preText);
             })
         }
     },
@@ -32,5 +42,16 @@ export default {
 </script>
 
 <style scoped>
+
+.container_article{
+    margin-left: 2rem;
+    padding: 1rem 0 0 1rem;
+    width: 960px;
+    height: 1200px;
+    background-color: #eeeeee;
+    border: 3px solid #3b5e97;
+    border-radius: 5px;
+    white-space: pre-line;
+}
 
 </style>
