@@ -22,7 +22,7 @@
                 <table class="tableComposition">
                     <tr v-for="item in nameComposition " :key="item">
                         <td>{{ item.count }}</td>
-                        <td><router-link :to="{name: 'article', query:{authorId: this.authorId, textId: item.book.textId}}">
+                        <td><router-link :to="{name: 'composition', query:{authorId: this.authorId, textId: item.book.textId}}">
                             {{ item.book.textTitle }}
                         </router-link>
                         </td>

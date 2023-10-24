@@ -2,7 +2,7 @@ import Profile from "../components/Profile.vue";
 import AdminPanel from "../components/AdminPanel/AdminPanel.vue";
 import MainPage from "../components/MainPage.vue";
 import Block from "../components/Block.vue";
-import Article from "../components/Articles/Article.vue";
+import Composition from "../components/Articles/Composition.vue";
 
 export default [
     {
@@ -27,9 +27,9 @@ export default [
         component: AdminPanel
     },
     {
-        path: '/article/:authorId?/:textId?',
-        name: 'article',
-        component: Article,
+        path: '/composition/:authorId?/:textId?',
+        name: 'composition',
+        component: Composition,
         props: {
             authorId: 1
         }

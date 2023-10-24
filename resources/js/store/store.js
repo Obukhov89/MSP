@@ -7,6 +7,7 @@ const store = createStore({
         login: '',
         books: [],
         modalRegistration: false,
+        modalEditComposition: false,
         isAdmin: false,
         visibleNews: true
     },
@@ -19,6 +20,14 @@ const store = createStore({
 
         showModalRegistration({commit}, payload){
             commit('showModalRegistration', payload)
+        },
+
+        showModalEditComposition({commit}, payload){
+          commit('showModalEditComposition', payload)
+        },
+
+        closeModalEditComposition({commit}, payload){
+            commit('closeModalEditComposition', payload)
         },
 
         closeModalRegistration({commit}, payload){
@@ -52,6 +61,14 @@ const store = createStore({
 
         closeModalRegistration(state, payload) {
             state.modalRegistration = payload
+        },
+
+        showModalEditComposition(state, payload) {
+            state.modalEditComposition = payload
+            },
+
+        closeModalEditComposition(state, payload) {
+            state.modalEditComposition = payload
         },
 
         isAdmin(state, payload){
