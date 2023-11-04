@@ -28,7 +28,7 @@ class Composition extends Model
         $path = storage_path('app/articles/'.$idAuthor.'/'.$idText.'.txt');
 
         echo json_encode($idAuthor);
-//        return file_exists($path);
+
         $fh = fopen($path, 'w');
 
         $res = fwrite($fh, $text);

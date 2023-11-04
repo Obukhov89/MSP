@@ -240,8 +240,8 @@ import Block from "./components/Block.vue";
 import axios from "axios";
 import router from "./router";
 import store from "./store/store";
-import mapState from "vuex/dist/vuex.mjs";
-import mapActions from "vuex/dist/vuex.mjs";
+import {mapState, mapActions} from "vuex/dist/vuex.mjs";
+// import mapActions from "vuex/dist/vuex.mjs";
 import ModalRegistration from "./components/Modals/ModalRegistration.vue";
 // import {defineAsyncComponent} from "vue";
 
@@ -260,18 +260,18 @@ export default {
     },
 
     computed:{
-        ...mapState['state'],
+        ...mapState('auth', ['state'], 'displayingElements', ['state']),
 
         state(){
             return this.$store.state.modalRegistration
         },
 
         isAdmin(){
-          return this.$store.state.isAdmin
+          return this.$store.state.auth.isAdmin
         },
 
         visibleNews(){
-            return this.$store.state.visibleNews
+            return this.$store.state.displayingElements.blockNews
         },
 
 
@@ -283,18 +283,20 @@ export default {
         },
 
         isAdmin: function (){
-            this.isAdmin = this.$store.state.isAdmin
+            this.isAdmin = this.$store.state.auth.isAdmin
         },
 
+
         visibleNews: function (){
-            console.log(this.newsVisible)
-            this.newsVisible = this.$store.state.visibleNews
+            this.newsVisible = this.$store.state.displayingElements.blockNews
         },
 
     },
 
     methods: {
-        ...mapActions['login', 'showModalRegistration', 'adminEnter'],
+        // ...mapActions['login', 'showModalRegistration', 'adminEnter'],
+        ...mapActions('auth', ['login', 'adminEnter']),
+
 
         showModal(){
             this.$store.dispatch('showModalRegistration', true)
@@ -316,15 +318,13 @@ export default {
                             login: response.data.login,
                             books: response.data.books,
                         }
-                        this.$store.dispatch('login', payload)
-                        this.$store.dispatch('hideNews')
-
+                        this.$store.dispatch('auth/login', payload)
 
                         response.data.roles.forEach((item) => {
                             console.log(item);
                             if (item === 1){
-                                this.$store.dispatch('adminEnter', true)
-                                this.isAdmin = this.$store.state.isAdmin
+                                this.$store.dispatch('auth/adminEnter', true)
+                                this.isAdmin = this.$store.state.auth.isAdmin
                             }
                         })
                         router.push({name: 'Profile'})
@@ -339,7 +339,7 @@ export default {
 
         goHomePage(){
             router.push({path: '/'})
-            this.$store.dispatch('showNews')
+            this.$store.dispatch('displayingElements/showNews', true)
         }
 
     },

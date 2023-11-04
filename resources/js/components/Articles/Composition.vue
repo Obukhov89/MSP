@@ -59,9 +59,7 @@ export default {
             }
 
             axios.post('/composition', data).then((response) => {
-                console.log(response.data);
-                let preText = JSON.stringify(response.data)
-                this.text =JSON.parse(preText);
+                this.text =response.data;
             })
         },
 
