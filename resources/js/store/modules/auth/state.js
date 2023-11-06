@@ -1,5 +1,6 @@
 export default {
     idAuthor: '',
+    oldId: '',
     authorName: '',
     login: '',
     books: [],

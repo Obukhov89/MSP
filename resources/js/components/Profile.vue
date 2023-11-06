@@ -27,7 +27,7 @@
                 <table class="tableComposition">
                     <tr v-for="item in nameComposition " :key="item">
                         <td>{{ item.count }}</td>
-                        <td><router-link :to="{name: 'composition', query:{authorId: this.authorId, textId: item.book.textId}}">
+                        <td><router-link :to="{name: 'composition', query:{authorId: this.oldId, textId: item.book.textId}}">
                             {{ item.book.textTitle }}
                         </router-link>
                         </td>
@@ -71,6 +71,11 @@ export default {
         authorId(){
           return  this.$store.state.auth.idAuthor
         },
+
+        oldId(){
+            return  this.$store.state.auth.oldId
+        },
+
         //
         visibleNews(){
             console.log(this.$store.state.displayingElements.blockNews)
@@ -86,6 +91,7 @@ export default {
         this.userName = this.$store.state.auth.authorName
         this.authorId = this.$store.state.auth.idAuthor
         this.addComposition = this.$store.state.displayingElements.addModalComposition
+        this.oldId = this.$store.state.auth.oldId
 
     },
 

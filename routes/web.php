@@ -30,6 +30,7 @@ Route::post('/saveRequest', [\App\Http\Controllers\RegRequestController::class, 
 Route::post('/composition', [\App\Http\Controllers\CompositionController::class, 'getArticle',  function(Request $request){}]);
 Route::post('/compositionEdit', [\App\Http\Controllers\CompositionController::class, 'editComposition', function(Request $request){}]);
 Route::post('/addNewComposition', [\App\Http\Controllers\CompositionController::class, 'addComposition', function(Request $request){}] );
+Route::get('/getAllStyles', [\App\Http\Controllers\CompositionController::class, 'getAllStyles']);
 
 //Route::post('/login', [\App\Http\Controllers\UserController::class, 'ReadDoc'], function(){ return view('welcome');});
 URL::forceScheme('https');

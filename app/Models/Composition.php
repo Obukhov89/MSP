@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Composition extends Model
 {
+    protected $table = 'docs2';
+
     public function getArticle($idAuthor, $idText){
         $path = storage_path('app/articles/'.$idAuthor.'/'.$idText.'.txt');
 
@@ -22,6 +24,18 @@ class Composition extends Model
         fclose($fh);
 
         return json_encode($text);
+    }
+
+    public function newCompositionText($idAuthor, $text, $newId)
+    {
+        $file = new FileModel();
+        $newComposition = $newId.'.txt';
+        $path = storage_path('app/articles/'. $idAuthor);
+
+        if (!is_dir($path)) {
+            mkdir($path);
+        }
+        return $file->createFile($path .'/'.$newComposition, $text);
     }
 
     public function editComposition($idAuthor, $idText, $text){

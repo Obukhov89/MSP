@@ -39,6 +39,10 @@ export default {
         state(){
             return this.$store.state.modalEditComposition
         },
+
+        oldId(){
+            return this
+        }
     },
 
     watch:{

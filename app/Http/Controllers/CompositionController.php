@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Composition;
+use App\Models\Style;
 use Illuminate\Http\Request;
 
 class CompositionController extends Controller
@@ -26,6 +27,12 @@ class CompositionController extends Controller
        return json_decode($art);
     }
 
+    public function getAllStyles(){
+        $styles = new Style();
+
+        return $styles::all('id', 'name');
+    }
+
     public function editComposition(Request $request){
 
         $authorId = $request->idAuthor;
@@ -36,14 +43,39 @@ class CompositionController extends Controller
     }
 
     public function addComposition(Request $request){
+
+        $text = $request->text;
+        $idAuthor = $request->idAuthor;
+        $title = $request->title;
+        $style = $request->style;
+        $date = date("Y-m-d H:i:s");
+
+        $composition = $this->article;
+
+
         if($request->hasFile('file')){
-            $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
+//            $file = $request->file('file');
+//            $fileName = $file->getClientOriginalName();
+//
+//            $idAuthor = $request->idAuthor;
+//
+//            $file->move(storage_path('app/articles/'.$idAuthor), $fileName);
+            return response()->json(['message' => 'it is file']);
+        }
+        else{
 
-            $idAuthor = $request->idAuthor;
+            $lastId = $this->article::max('id') + 1;
 
-            $file->move(storage_path('app/articles/'.$idAuthor), $fileName);
-            return response()->json(['message' => 'ok']);
+            $this->article->newCompositionText($idAuthor, $text, $lastId);
+
+            $composition->aid = $idAuthor;
+            $composition->date = $date;
+            $composition->title = $title;
+            $composition->style = $style;
+
+            $composition->save();
+
+            return response()->json($composition);
         }
     }
 }

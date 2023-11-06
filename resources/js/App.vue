@@ -317,6 +317,7 @@ export default {
                             authorName: response.data.nameUser,
                             login: response.data.login,
                             books: response.data.books,
+                            oldId: response.data.oldId
                         }
                         this.$store.dispatch('auth/login', payload)
 
