@@ -260,7 +260,7 @@ export default {
     },
 
     computed:{
-        ...mapState('auth', ['state'], 'displayingElements', ['state']),
+        ...mapState('auth', ['state'], 'displayingElements', ['state'], 'composition', ['state']),
 
         state(){
             return this.$store.state.modalRegistration
@@ -295,7 +295,7 @@ export default {
 
     methods: {
         // ...mapActions['login', 'showModalRegistration', 'adminEnter'],
-        ...mapActions('auth', ['login', 'adminEnter']),
+        ...mapActions('auth', ['login', 'adminEnter'], 'composition', ['counterBooks']),
 
 
         showModal(){
@@ -318,8 +318,15 @@ export default {
                             login: response.data.login,
                             books: response.data.books,
                             oldId: response.data.oldId
+                        };
+
+                        let payloadBook = {
+                            countBooks: payload.books.length,
+                            book: payload.books
                         }
+
                         this.$store.dispatch('auth/login', payload)
+                        this.$store.dispatch('composition/allBooks', payloadBook)
 
                         response.data.roles.forEach((item) => {
                             console.log(item);

@@ -1,8 +1,9 @@
-<template>
+<template :key="this.counterBooks">
     <div id="homepage" class="homepage-container">
         <p class="managementHeader">Управление профилем</p>
         <div class="managementDiv">
             <button class="manageBtn">Редактировать профиль</button>
+            <button class="manageBtn">Действия с произведениями</button>
             <button @click="visibleAddComposition" class="manageBtn">Добавить произведение</button>
             <button class="manageBtn">Мой лицевой счет</button>
         </div>
@@ -25,10 +26,10 @@
                     <div class="composition-genre">Жанр</div>
                 </div>
                 <table class="tableComposition">
-                    <tr v-for="item in nameComposition " :key="item">
-                        <td>{{ item.count }}</td>
-                        <td><router-link :to="{name: 'composition', query:{authorId: this.oldId, textId: item.book.textId}}">
-                            {{ item.book.textTitle }}
+                    <tr v-for="(item, index) in books " :key="index">
+                        <td>{{ index + 1 }}</td>
+                        <td><router-link :to="{name: 'composition', query:{authorId: this.authorId, textId: item.textId}}">
+                            {{ item.textTitle }}
                         </router-link>
                         </td>
                     </tr>
@@ -39,27 +40,29 @@
     <div v-if="this.addComposition">
         <NewCompositionModal></NewCompositionModal>
     </div>
+    <ActionsCompositions :books = books></ActionsCompositions>
 </template>
 
 <script>
 import  {mapState, mapActions} from "vuex/dist/vuex.mjs";
-import displayningElements from "../store/modules/displayningElements/displayingElements";
 import NewCompositionModal from "./Modals/NewCompositionModal.vue";
+import ActionsCompositions from "./Modals/ActionsCompositions.vue";
 
 export default {
     name: "HomePage",
-    components: {NewCompositionModal},
+    components: {ActionsCompositions, NewCompositionModal},
     data(){
         return {
             authorId: '',
             userName: '',
             countComposition:0,
             nameComposition: [],
-            addComposition: false
+            addComposition: false,
+            componentKey: 0
         }
     },
     computed:{
-        ...mapState('auth',['state'], 'displayingElements', ['state']),
+        ...mapState('auth',['state'], 'displayingElements', ['state'], 'composition', ['counterBooks', 'books']),
         state() {
             return this.$store.state.auth.authorName
         },
@@ -67,16 +70,15 @@ export default {
         books(){
           return this.$store.state.auth.books
         },
+
+        counterBooks(){
+            return this.$store.state.composition.countBooks
+        },
         //
         authorId(){
           return  this.$store.state.auth.idAuthor
         },
 
-        oldId(){
-            return  this.$store.state.auth.oldId
-        },
-
-        //
         visibleNews(){
             console.log(this.$store.state.displayingElements.blockNews)
             return this.$store.state.displayingElements.blockNews
@@ -85,27 +87,26 @@ export default {
         visibleComposition(){
             console.log(this.$store.state.displayingElements.addModalComposition)
             return this.$store.state.displayingElements.addModalComposition
-        }
+        },
+
     },
     created() {
         this.userName = this.$store.state.auth.authorName
         this.authorId = this.$store.state.auth.idAuthor
-        this.addComposition = this.$store.state.displayingElements.addModalComposition
-        this.oldId = this.$store.state.auth.oldId
-
+        this.addComposition = this.$store.state.displayingElements.addModalComposition,
+        this.componentKey= this.$store.state.composition.countBooks;
     },
 
     watch:{
         visibleComposition: function (){
             this.addComposition = this.$store.state.displayingElements.addModalComposition
-        }
+        },
     },
 
     methods:{
         ...mapActions('displayningElements',['hideNews', 'visibleAdd']),
          addBooks(){
-             this.$store.state.auth.books.forEach((item, idx) => {
-                 console.log()
+             this.$store.state.composition.books.forEach((item, idx) => {
                  this.nameComposition.push({count: idx + 1, book: item})
              })
              this.countComposition = this.$store.state.auth.books.length
@@ -116,13 +117,14 @@ export default {
 
             console.log(payload)
             this.$store.dispatch('displayingElements/visibleAdd', true)
-        }
+        },
+
     },
     beforeMount() {
         this.addBooks();
         let payload = false;
         this.$store.dispatch('displayingElements/hideNews', payload)
-    }
+    },
 }
 </script>
 

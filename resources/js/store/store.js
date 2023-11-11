@@ -1,6 +1,7 @@
 import {createStore} from "vuex/dist/vuex.mjs";
 import auth from './modules/auth/auth.js'
 import displayingElements from "./modules/displayningElements/displayingElements.js";
+import composition from "./modules/composition/composition.js";
 
 const store = createStore({
     state:{},
@@ -46,6 +47,7 @@ const store = createStore({
     modules:{
         auth,
         displayingElements,
+        composition
     }
 })
 

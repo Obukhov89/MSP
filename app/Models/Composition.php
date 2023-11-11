@@ -17,9 +17,8 @@ class Composition extends Model
 
         $fh = fopen($path, 'r');
 
-        while (!feof($fh)) {
-            $line = fgets($fh);
-            $text .= $line . PHP_EOL;
+        while ($string = fgets($fh)) {
+            $text .= $string;
         }
         fclose($fh);
 
@@ -38,6 +37,7 @@ class Composition extends Model
         return $file->createFile($path .'/'.$newComposition, $text);
     }
 
+
     public function editComposition($idAuthor, $idText, $text){
         $path = storage_path('app/articles/'.$idAuthor.'/'.$idText.'.txt');
 
@@ -50,5 +50,9 @@ class Composition extends Model
 
         return $res;
     }
+
+//    public function getAllComposition(){
+//        $res =
+//    }
 
 }

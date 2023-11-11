@@ -3,7 +3,6 @@ export default {
     oldId: '',
     authorName: '',
     login: '',
-    books: [],
     isAdmin: false,
     idRole: 0
 }

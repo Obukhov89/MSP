@@ -49,7 +49,6 @@ import {mapState, mapActions} from "vuex/dist/vuex.mjs";
 
 export default {
     name: "NewCompositionModal",
-
     data(){
         return{
             file: null,
@@ -59,15 +58,25 @@ export default {
             arrStyles: [],
             text: '',
             styleId: 0,
-            oldId: 0
+            oldId: 0,
+            counterBook: 0,
+            arrBooks: []
         }
     },
 
     computed:{
-        ...mapState('auth', ['store']),
+        ...mapState('auth', ['store'], 'composition', ['counterBooks']),
 
         storeId(){
             return this.$store.state.auth.idAuthor
+        },
+
+        arrayBook(){
+            return this.$store.state.composition.books
+        },
+
+        countBooks(){
+            return this.$store.state.composition.countBooks
         }
     },
 
@@ -76,11 +85,14 @@ export default {
             this.oldId = this.$store.state.auth.oldId.length
         }
             this.idAuthor =  this.$store.state.auth.idAuthor;
+
+        this.counterBook = this.$store.state.composition.countBooks;
+        this.arrBooks = this.$store.state.auth.books
     },
 
     methods:{
 
-        ...mapActions('displayingElements', ['hideAdd']),
+        ...mapActions('displayingElements', ['hideAdd'], 'composition', ['plusBook']),
 
         getStyles(){
             axios.get('/getAllStyles').then((response) => {
@@ -99,30 +111,31 @@ export default {
             if (this.textArea){
 
                 formData.append('text', this.text)
-                formData.append('idAuthor',  this.oldId)
+                formData.append('idAuthor',  this.idAuthor)
                 formData.append('title', this.title)
                 formData.append('style', this.styleId)
                 axios.post('/addNewComposition', formData).then((response) => {
                     console.log(response.data)
+                    this.arrBooks.push({'textId': response.data.id, 'textTitle': response.data.title})
+                    this.$store.dispatch('composition/plusBook')
                 })
-
+                this.close()
             }
             else {
                 console.log(this.$store.state.auth.idAuthor)
                 formData.append('file', this.file);
-                formData.append('idAuthor',  this.oldId)
+                formData.append('idAuthor',  this.idAuthor)
                 formData.append('title', this.title)
+                formData.append('style', this.styleId)
 
                 console.log(formData.has('file'))
                 axios.post('/addNewComposition', formData).then((response) => {
-
-
-
-                    this.arrStyles = response.data
-                    console.log(this.arrStyles)
+                    console.log(response.data)
+                    this.arrBooks.push({'textId': response.data.id, 'textTitle': response.data.title})
+                    this.$store.dispatch('composition/plusBook')
                 })
+                this.close()
             }
-
         },
 
         close(){
@@ -130,6 +143,7 @@ export default {
         }
     },
     beforeMount() {
+        console.log(this.arrBooks)
         this.getStyles();
     }
 }

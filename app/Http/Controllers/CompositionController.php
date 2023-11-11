@@ -22,15 +22,19 @@ class CompositionController extends Controller
         $authorId = $request->authorId;
         $textId = $request->textId;
 
-       $art =  $this->article->getArticle($authorId, $textId);
+        $art =  $this->article->getArticle($authorId, $textId);
 
-       return json_decode($art);
+        return json_encode($art);
     }
 
     public function getAllStyles(){
         $styles = new Style();
 
         return $styles::all('id', 'name');
+    }
+
+    public function updateListComposition(){
+        return $this->article->getAllComposition();
     }
 
     public function editComposition(Request $request){
@@ -51,31 +55,28 @@ class CompositionController extends Controller
         $date = date("Y-m-d H:i:s");
 
         $composition = $this->article;
-
+        $lastId = $this->article::max('id') + 1;
 
         if($request->hasFile('file')){
-//            $file = $request->file('file');
-//            $fileName = $file->getClientOriginalName();
-//
-//            $idAuthor = $request->idAuthor;
-//
-//            $file->move(storage_path('app/articles/'.$idAuthor), $fileName);
-            return response()->json(['message' => 'it is file']);
+
+            $file = $request->file('file');
+            $fileName = $lastId . '.txt';
+
+            $idAuthor = $request->idAuthor;
+
+            $file->move(storage_path('app/articles/'.$idAuthor), $fileName);
+
         }
         else{
-
-            $lastId = $this->article::max('id') + 1;
-
             $this->article->newCompositionText($idAuthor, $text, $lastId);
-
-            $composition->aid = $idAuthor;
-            $composition->date = $date;
-            $composition->title = $title;
-            $composition->style = $style;
-
-            $composition->save();
-
-            return response()->json($composition);
         }
+
+        $composition->aid = $idAuthor;
+        $composition->date = $date;
+        $composition->title = $title;
+        $composition->style = $style;
+        $composition->save();
+
+        return response()->json($composition);
     }
 }

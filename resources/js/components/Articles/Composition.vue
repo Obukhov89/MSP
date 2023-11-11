@@ -63,7 +63,7 @@ export default {
             }
 
             axios.post('/composition', data).then((response) => {
-                this.text =response.data;
+                this.text =JSON.parse(response.data);
             })
         },
 
