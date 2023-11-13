@@ -1,4 +1,5 @@
 <template>
+    <CompositionModal></CompositionModal>
     <transition name="modal-fade">
         <div class="modal-backdrop">
             <div class="modal"
@@ -13,18 +14,12 @@
                         <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
                     </slot>
                 </header>
-                <div class="divRole">
-                    <label class="labelFor" for="author">Редактировать</label>
-                    <input type="radio" value= {{true}} id="author" v-model="typeAction">
-                    <label class="labelFor" for="reader">Удалить</label>
-                    <input type="radio" value= {{false}} id="reader" v-model="typeAction">
-                </div>
-                <table>
+                <table style="border-collapse: collapse; margin-top: 2rem">
                     <tr class="listComposition" v-for="(items, index) in this.books" key="{{items.textId}}">
                         <td>{{index + 1}}</td>
                         <td>{{items.textTitle}}</td>
-                        <td v-if="typeAction"><button class="editBtn">Редактировать</button></td>
-                        <td v-else><button class="deleteBtn">Удалить</button></td>
+                        <td><button @click="openEdit" class="editBtn">Редактировать</button></td>
+                        <td><button class="deleteBtn">Удалить</button></td>
                     </tr>
                 </table>
             </div>
@@ -33,9 +28,12 @@
 </template>
 
 <script>
+import {mapState, mapActions} from "vuex";
+import CompositionModal from "./CompositionModal.vue";
 
 export default {
     name: "ActionsCompositions",
+    components: {CompositionModal},
     props: ['books'],
 
     data(){
@@ -44,9 +42,18 @@ export default {
       }
     },
 
+    computed:{
+        ...mapState['state'],
+    },
+
     methods:{
+        ...mapActions['showModalEditComposition'],
         testBook(){
             console.log(this.books);
+        },
+
+        openEdit(){
+            this.$store.dispatch('showModalEditComposition', true)
         }
     },
 
@@ -90,20 +97,14 @@ export default {
     justify-content: space-between;
 }
 
+
+.listComposition{
+    border-bottom: 1px solid lightgray;
+}
+
 .listComposition td{
     text-align: center;
-}
-
-.containerInput{
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-}
-
-
-.labelFor{
-    margin: 1rem;
-    color: #3b5e97;
+    width: 90px;
 }
 
 .editBtn{
@@ -113,6 +114,7 @@ export default {
     border: none;
     color: #eeeeee;
     border-radius: 3px;
+    float: right;
 }
 
 .deleteBtn{

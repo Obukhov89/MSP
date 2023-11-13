@@ -53,9 +53,17 @@ class CompositionController extends Controller
         $title = $request->title;
         $style = $request->style;
         $date = date("Y-m-d H:i:s");
-
         $composition = $this->article;
-        $lastId = $this->article::max('id') + 1;
+
+
+        $composition->aid = $idAuthor;
+        $composition->date = $date;
+        $composition->title = $title;
+        $composition->style = $style;
+        $composition->save();
+
+
+        $lastId = $this->article::max('id');
 
         if($request->hasFile('file')){
 
@@ -71,12 +79,18 @@ class CompositionController extends Controller
             $this->article->newCompositionText($idAuthor, $text, $lastId);
         }
 
-        $composition->aid = $idAuthor;
-        $composition->date = $date;
-        $composition->title = $title;
-        $composition->style = $style;
-        $composition->save();
-
         return response()->json($composition);
+    }
+
+    public function deleteComposition(Request $request) {
+        $textId = $request->textId;
+        $authorId = $request->authorId;
+
+        $this->article->deleteComposition($textId, $authorId);
+
+        $delComposition = $this->article::find($textId);
+        $delComposition->delete();
+
+        return $delComposition;
     }
 }

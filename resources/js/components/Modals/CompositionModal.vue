@@ -29,11 +29,13 @@
 
 <script>
 import axios from "axios";
-import mapActions from "vuex/dist/vuex.mjs";
+import  {mapActions, mapState} from "vuex/dist/vuex.mjs";
 
 export default {
     name: "CompositionModal",
     props: ['text', 'idAuthor', 'idText'],
+
+    ...mapState('displayingElements', ['state']),
 
     methods:{
         ...mapActions['closeModalEditComposition'],
@@ -46,13 +48,13 @@ export default {
             axios.post('/compositionEdit', data).then((response) => {
                 if (response.data !== false){
                     alert('Сохранение выполнено успешно')
-                    this.$store.dispatch('closeModalEditComposition', false)
+                    this.$store.dispatch('displayingElements/closeModalEditComposition', false)
                 }
             })
         },
 
         close(){
-            this.$store.dispatch('closeModalEditComposition', false)
+            this.$store.dispatch('displayingElements/closeModalEditComposition', false)
         }
     }
 }

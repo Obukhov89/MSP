@@ -14,5 +14,13 @@ export default {
 
     hideAdd(state, payload){
         state.addModalComposition = payload
-    }
+    },
+
+    visibleEdit(state, payload) {
+        state.modalEditComposition = payload
+    },
+
+    closeModalEditComposition(state, payload) {
+        state.modalEditComposition = payload
+    },
 }

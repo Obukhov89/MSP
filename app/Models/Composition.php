@@ -51,8 +51,11 @@ class Composition extends Model
         return $res;
     }
 
-//    public function getAllComposition(){
-//        $res =
-//    }
+    public function deleteComposition($textId, $authorId){
+
+        $path = storage_path('app/articles/' . $authorId . '/' . $textId.'.txt');
+
+        return unlink($path);
+    }
 
 }

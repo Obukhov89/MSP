@@ -14,5 +14,13 @@ export default {
 
     hideAdd({commit}, payload){
         commit('hideAdd', payload)
-    }
+    },
+
+    visibleEdit({commit}, payload){
+        commit('visibleEdit', payload)
+    },
+
+    closeModalEditComposition({commit}, payload){
+        commit('closeModalEditComposition', payload)
+    },
 }

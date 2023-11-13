@@ -7,14 +7,12 @@
         <CompositionModal  :text = "this.text" :idAuthor = "this.$route.query.authorId" :idText = "this.$route.query.textId"/>
     </div>
 
-<!--    <CompostionModal text = "lthis.text"/>-->
 </template>
 
 <script>
 import axios from "axios";
 import CompositionModal from "../Modals/CompositionModal.vue";
-import mapState from "vuex/dist/vuex.mjs";
-import mapActions from "vuex/dist/vuex.mjs";
+import {mapState, mapActions} from "vuex/dist/vuex.mjs";
 
 export default {
     name: "Composition",
@@ -34,25 +32,21 @@ export default {
     },
 
     computed:{
-        ...mapState['state'],
+        ...mapState('displayingElements', ['state']),
 
         state(){
-            return this.$store.state.modalEditComposition
+            return this.$store.state.displayingElements.modalEditComposition
         },
-
-        oldId(){
-            return this
-        }
     },
 
     watch:{
         state: function () {
-            this.editVisible = this.$store.state.modalEditComposition
+            this.editVisible = this.$store.state.displayingElements.modalEditComposition
         },
     },
 
     methods:{
-        ...mapActions['showModalEditComposition'],
+        ...mapActions('displayingElements', ["visibleEdit"]),
 
         showArticle(){
             console.log(this.textId)
@@ -68,8 +62,7 @@ export default {
         },
 
         openEdit(){
-            this.$store.dispatch('showModalEditComposition', true)
-            this.editVisible = this.$store.state.modalEditComposition
+            this.$store.dispatch('displayingElements/visibleEdit', true)
         }
     },
     beforeMount() {

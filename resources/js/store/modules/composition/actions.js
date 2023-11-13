@@ -9,5 +9,9 @@ export default {
 
     addNewBook({commit}, payload){
         commit('addNewBook', payload)
+    },
+
+    delComposition({commit}, payload) {
+        commit('delComposition', payload)
     }
 }

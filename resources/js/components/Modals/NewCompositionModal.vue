@@ -92,7 +92,7 @@ export default {
 
     methods:{
 
-        ...mapActions('displayingElements', ['hideAdd'], 'composition', ['plusBook']),
+        ...mapActions('displayingElements', ['hideAdd'], 'composition', ['addNewBook']),
 
         getStyles(){
             axios.get('/getAllStyles').then((response) => {
@@ -116,8 +116,13 @@ export default {
                 formData.append('style', this.styleId)
                 axios.post('/addNewComposition', formData).then((response) => {
                     console.log(response.data)
-                    this.arrBooks.push({'textId': response.data.id, 'textTitle': response.data.title})
-                    this.$store.dispatch('composition/plusBook')
+
+                    let data = {
+                        textId: response.data.id,
+                        textTitle: response.data.title
+                    }
+
+                    this.$store.dispatch('composition/addNewBook', data)
                 })
                 this.close()
             }
@@ -131,8 +136,13 @@ export default {
                 console.log(formData.has('file'))
                 axios.post('/addNewComposition', formData).then((response) => {
                     console.log(response.data)
-                    this.arrBooks.push({'textId': response.data.id, 'textTitle': response.data.title})
-                    this.$store.dispatch('composition/plusBook')
+
+                    let data = {
+                        textId: response.data.id,
+                        textTitle: response.data.title
+                    }
+
+                    this.$store.dispatch('composition/addNewBook', data)
                 })
                 this.close()
             }
