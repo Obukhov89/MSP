@@ -32,7 +32,7 @@ class Composition extends Model
         $path = storage_path('app/articles/'. $idAuthor);
 
         if (!is_dir($path)) {
-            mkdir($path);
+            mkdir($path, 777);
         }
         return $file->createFile($path .'/'.$newComposition, $text);
     }
