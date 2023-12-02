@@ -23,4 +23,16 @@ export default {
     closeModalEditComposition(state, payload) {
         state.modalEditComposition = payload
     },
+
+    modalContest(state, payload){
+        state.addContest = payload
+    },
+
+    modalRegistration(state, payload){
+        state.modalRegistration = payload
+    },
+
+    applicationContest(state, payload){
+        state.applicationContest = payload
+    }
 }

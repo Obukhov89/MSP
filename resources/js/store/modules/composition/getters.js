@@ -1,1 +1,5 @@
-export default {}
+export default {
+    getBooks: state => {
+        return state.books
+    }
+}

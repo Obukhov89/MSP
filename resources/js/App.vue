@@ -1,74 +1,5 @@
 <template>
-    <div v-if="this.isAdmin" class="adminBtn">
-        <button @click="pushAdmin">Панель андминистратора</button>
-    </div>
-    <div class="container header">
-        <div class="header__block">
-            <p class="header__block-title">Платон мне друг...</p>
-            <img class="rk" src="../../public/img/rk.jpg"/>
-            <li class="header-list">Конкурс «Рябина на коньяке»</li>
-            <li class="header-list">Приглашение на конкурс</li>
-            <li class="header-list">Произведения номинации «Проза»</li>
-            <li class="header-list">Произведения номинации «Поэзия»</li>
-        </div>
-
-        <div class="header__logo">
-            <div class="logo-container header__content">
-                <h1 class="header__title">Портал Международного Союза писателей "Новый Современник"</h1>
-                <div class="header__group">
-                    <img class="logo" src="../../public/img/logo.png"/>
-                    <form method="post" @submit.prevent="loginFunc" class="autorisation">
-                        <h3 class="autorisation__title">Вход для авторов</h3>
-                        <div class="autorisation__form">
-                            <div>Логин
-                                <input type="text" placeholder="" name="login" v-model="login">
-                            </div>
-                            <div>Пароль
-                                <input type="password" placeholder="" name="password" v-model="password">
-                            </div>
-                        </div>
-                        <div class="autorisation__subtitle">
-                            <button class="autorisation__btn">Вход</button>
-                            <input type="checkbox"> Запомнить меня
-                        </div>
-                        <p @click="showModal">Регистрация на портале</p>
-                        <p href="">Забыли пароль?</p>
-                    </form>
-                </div>
-
-                <!-- <p class="header__subtitle">конкурсы, публикации, критика, издания, справочники писателей</p> -->
-                <h1 class="header__title">При содействии литературного фонда имени Сергея Есенина</h1>
-            </div>
-            <div id="navbar">
-                <ul class="navbar__list">
-                    <li> <button class="li-btn" @click="goHomePage"> Главная</button></li>
-                    <li> <button  class="li-btn">Новости и объявления</button></li>
-                    <li> <button  class="li-btn"> Круглый стол</button></li>
-                    <li> <button  class="li-btn"> Лента рецензий</button></li>
-                    <li> <button  class="li-btn"> Ленты форумов</button></li>
-                    <li> <button  class="li-btn"> Обзоры и итоги конкурсов</button></li>
-                    <li> <button  class="li-btn"> Диалоги, дискуссии, обсуждения</button></li>
-                    <li> <button  class="li-btn"> Избранные произведения</button></li>
-                    <li> <button  class="li-btn"> Литобъединения и союзы писателей</button></li>
-                    <li> <button  class="li-btn"> Литературные салоны, гостинные, студии, кафе</button></li>
-                    <li> <button  class="li-btn"> Kонкурсы и премии</button>    </li>
-                    <li> <button  class="li-btn"> Проекты критики</button></li>
-                    <li> <button  class="li-btn"> Новости Литературной сети</button></li>
-                    <li> <button  class="li-btn"> Журналы</button></li>
-                    <li> <button  class="li-btn"> Издательские проекты</button></li>
-                    <li> <button  class="li-btn"> Издать книгу</button></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="header__block">
-            <p class="header__block-title">Дежурный писатель</p>
-            <img class="rk" src="../../public/img/deg-pisatel.jpg"/>
-            <li class="header-list">Мысли, афоризмы и цитаты о писательском труде</li>
-            <li class="header-list">Привычки и навыки, помогающие нам в писательском труде</li>
-            <li class="header-list">Золотые правила писателей</li>
-        </div>
-    </div>
+    <Header/>
     <div class="container blocks">
         <div class="left-blocks">
             <div class="header__block left-block">
@@ -225,50 +156,37 @@
             </div>
         </div>
     </div>
-    <div v-if="this.isModalVisible">
-        <ModalRegistration isModalVisible = "true"/>
-    </div>
+
 
     <!-- <Menu class="container"></Menu> -->
 </template>
 
 <script>
-import HomePage from "./components/Profile.vue";
-
 import CitySelect from "./components/CitySelect.vue";
 import Block from "./components/Block.vue";
 import axios from "axios";
 import router from "./router";
-import store from "./store/store";
-import {mapState, mapActions} from "vuex/dist/vuex.mjs";
-// import mapActions from "vuex/dist/vuex.mjs";
+import  {mapState, mapActions, mapGetters} from "vuex/dist/vuex.mjs";
 import ModalRegistration from "./components/Modals/ModalRegistration.vue";
-// import {defineAsyncComponent} from "vue";
+import LoginForm from "./components/LoginForm.vue";
+import Header from "./components/Header.vue";
 
 
 export default {
     name: "App",
-    components: {ModalRegistration, Block, CitySelect},
+    components: {Header, LoginForm, ModalRegistration, Block, CitySelect},
     data() {
         return ({
-            login: '',
-            password: '',
             newsVisible: true,
             isModalVisible: false,
-            isAdmin: false,
             })
     },
 
     computed:{
         ...mapState('auth', ['state'], 'displayingElements', ['state'], 'composition', ['state']),
+        ...mapGetters('auth', ['isAdmin']),
 
-        state(){
-            return this.$store.state.modalRegistration
-        },
 
-        isAdmin(){
-          return this.$store.state.auth.isAdmin
-        },
 
         visibleNews(){
             return this.$store.state.displayingElements.blockNews
@@ -282,11 +200,6 @@ export default {
             this.isModalVisible = this.$store.state.modalRegistration
         },
 
-        isAdmin: function (){
-            this.isAdmin = this.$store.state.auth.isAdmin
-        },
-
-
         visibleNews: function (){
             this.newsVisible = this.$store.state.displayingElements.blockNews
         },
@@ -294,66 +207,22 @@ export default {
     },
 
     methods: {
-        // ...mapActions['login', 'showModalRegistration', 'adminEnter'],
-        ...mapActions('auth', ['login', 'adminEnter'], 'composition', ['counterBooks']),
-
+        ...mapActions('auth', ['login', 'adminEnter',], 'composition', ['counterBooks'], 'contest', ['addAllContests']),
 
         showModal(){
             this.$store.dispatch('showModalRegistration', true)
             this.isModalVisible = this.$store.state.modalRegistration
         },
 
-        loginFunc() {
-
-            let data = {
-                login: this.login,
-                password: this.password
-            }
-                axios.post('/login', data).then((response) => {
-                    console.log(response.data)
-                    if (response.data !== false) {
-                        let payload = {
-                            idAuthor: response.data.idUser,
-                            authorName: response.data.nameUser,
-                            login: response.data.login,
-                            books: response.data.books,
-                            oldId: response.data.oldId
-                        };
-
-                        let payloadBook = {
-                            countBooks: payload.books.length,
-                            book: payload.books
-                        }
-
-                        this.$store.dispatch('auth/login', payload)
-                        this.$store.dispatch('composition/allBooks', payloadBook)
-
-                        response.data.roles.forEach((item) => {
-                            console.log(item);
-                            if (item === 1){
-                                this.$store.dispatch('auth/adminEnter', true)
-                                this.isAdmin = this.$store.state.auth.isAdmin
-                            }
-                        })
-                        router.push({name: 'Profile'})
-                    }
-                })
+        getContests(){
+            axios.get('/getAllContests').then((response) => {
+                this.$store.dispatch('contest/addAllContests', response.data)
+            })
         },
-
-        pushAdmin(){
-            this.$store.dispatch('hideNews')
-            router.push({path: '/admin'})
-        },
-
-        goHomePage(){
-            router.push({path: '/'})
-            this.$store.dispatch('displayingElements/showNews', true)
-        }
-
     },
 
     beforeMount() {
-
+        this.getContests()
     }
 }
 </script>
@@ -377,24 +246,6 @@ body {
 
 li {
     list-style: none;
-}
-
-.logo-container {
-    /* width: 800px; */
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-
-}
-
-.header {
-    /* height: 100px; */
-    background-color: #C6DCF2;
-    display: flex;
-    /* background-blend-mode: luminosity; */
-    gap: 30px;
-    justify-content: space-around;
-    padding-top: 10px;
 }
 
 .header__block {
@@ -522,11 +373,7 @@ li {
     color: white;
 }
 
-.adminBtn{
-    height: 45px;
-    background-color: #3b5e97;
-    border: 2px solid gray;
-}
+
 
 .adminBtn button{
     width: 200px;
@@ -582,18 +429,6 @@ h4 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: 10px 0 0 0;
-}
-.li-btn{
-    background-color: #abcdf066;
-    width: 100%;
-    height: 30px;
-    border: 1px solid white;
-    font-size: 12px;
-    /* padding: 0 5px; */
-    cursor: pointer;
-    font-weight: 600;
-    color: #3b5e97;
-    border-radius: 5px;
 }
 
 #navbar ul li {

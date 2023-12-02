@@ -3,7 +3,7 @@
         <p class="managementHeader">Управление профилем</p>
         <div class="managementDiv">
             <button class="manageBtn">Редактировать профиль</button>
-            <button class="manageBtn">Действия с произведениями</button>
+            <button @click="goContests" class="manageBtn">Участвовать в конкурсах</button>
             <button @click="visibleAddComposition" class="manageBtn">Добавить произведение</button>
             <button class="manageBtn">Мой лицевой счет</button>
         </div>
@@ -63,6 +63,7 @@ import NewCompositionModal from "./Modals/NewCompositionModal.vue";
 import ActionsCompositions from "./Modals/ActionsCompositions.vue";
 import CompositionModal from "./Modals/CompositionModal.vue";
 import axios from "axios";
+import router from "../router";
 
 
 export default {
@@ -175,8 +176,11 @@ export default {
             this.$store.dispatch('composition/delComposition', index)
 
             console.log(index)
-        }
+        },
 
+        goContests(){
+            router.push({name: 'Contests'})
+        }
     },
     beforeMount() {
         this.addBooks();

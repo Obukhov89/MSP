@@ -5,12 +5,14 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Composition extends Model
 {
     protected $table = 'docs2';
 
-    public function getArticle($idAuthor, $idText){
+    public function getArticle($idAuthor, $idText)
+    {
         $path = storage_path('app/articles/'.$idAuthor.'/'.$idText.'.txt');
 
         $text = '';
@@ -38,7 +40,8 @@ class Composition extends Model
     }
 
 
-    public function editComposition($idAuthor, $idText, $text){
+    public function editComposition($idAuthor, $idText, $text)
+    {
         $path = storage_path('app/articles/'.$idAuthor.'/'.$idText.'.txt');
 
         echo json_encode($idAuthor);
@@ -51,11 +54,25 @@ class Composition extends Model
         return $res;
     }
 
-    public function deleteComposition($textId, $authorId){
+    public function deleteComposition($textId, $authorId)
+    {
 
         $path = storage_path('app/articles/' . $authorId . '/' . $textId.'.txt');
 
         return unlink($path);
+    }
+
+    public function getFormComposition()
+    {
+        $arrForm = [];
+
+        $query = DB::select("select * from `forms_composition`");
+
+        foreach ($query as $value){
+            $arrForm[] = $value;
+        }
+
+        return $arrForm;
     }
 
 }

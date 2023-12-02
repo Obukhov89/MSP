@@ -1,8 +1,9 @@
-import Profile from "../components/Profile.vue";
 import AdminPanel from "../components/AdminPanel/AdminPanel.vue";
 import MainPage from "../components/MainPage.vue";
 import Block from "../components/Block.vue";
 import Composition from "../components/Articles/Composition.vue";
+import Profile from "../components/Profile.vue";
+import TableContests from "../components/Contests/TableContests.vue";
 
 export default [
     {
@@ -16,6 +17,7 @@ export default [
         name: 'Profile',
         component: Profile,
     },
+
     {
         path: '/news',
         name: 'News',
@@ -33,5 +35,12 @@ export default [
         props: {
             authorId: 1
         }
+    },
+
+    {
+        path: '/contests',
+        name: 'Contests',
+        component: TableContests
     }
+
 ]

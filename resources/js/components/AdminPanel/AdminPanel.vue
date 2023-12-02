@@ -11,11 +11,8 @@
             <div class="li-btn" @click="setActive('tab-5')">Управление новостями</div>
             <div class="li-btn" @click="setActive('tab-6')">Управление конкурсами</div>
         </div>
-        <div class="adminpanel__window" v-show="isActive('tab-1')">
-            <div class="adminpanel__text">
-                <h1>Управление регистрацией</h1>
-            </div>
-                <TableRequest/>
+        <div v-show="isActive('tab-1')">
+            <TableRequest/>
         </div>
         <div class="adminpanel__window" v-show="isActive('tab-2')">
             <div class="adminpanel__text">
@@ -37,32 +34,30 @@
                 <h1>Управление новостями</h1>
             </div>
         </div>
-        <div class="adminpanel__window" v-show="isActive('tab-6')">
-            <div class="adminpanel__text">
-                <h1>Управление конкурсами</h1>
-            </div>
+        <div v-show="isActive('tab-6')">
+            <ContestList/>
         </div>
-  </div>
+    </div>
 
-  </template>
+</template>
 
 <script>
 
 
 import TableRequest from "./TableRequest.vue";
+import ContestList from "./ContestList.vue";
 
 export default {
     name: "AdminPanel",
-    components: {TableRequest},
-    // components: {TableRequest},
-    data:()=>({
+    components: {ContestList, TableRequest},
+    data: () => ({
         activeTab: 'tab-1',
     }),
     methods: {
-        setActive(tab){
+        setActive(tab) {
             this.activeTab = tab
         },
-        isActive(tab){
+        isActive(tab) {
             return this.activeTab === tab;
         },
 
@@ -80,7 +75,7 @@ export default {
     /*margin: 0 auto;*/
 }
 
-.adminpanel__name{
+.adminpanel__name {
     text-align: center;
     margin: 0;
     border: 1px solid;
@@ -89,26 +84,28 @@ export default {
     padding: 5px;
 }
 
-.adminpanel__title2{
+.adminpanel__title2 {
     display: flex;
     padding: 0;
     justify-content: space-between;
 }
 
-.adminpanel__title{
+.adminpanel__title {
     display: flex;
     padding: 0;
     justify-content: space-between;
 }
-.adminpanel__window{
+
+.adminpanel__window {
     height: 10vh;
-    border: 2px solid  white;
+    border: 2px solid white;
 }
-.adminpanel__text h1{
+
+.adminpanel__text h1 {
     color: #000;
 }
 
-.li-btn{
+.li-btn {
     background-color: #abcdf066;
     width: 100%;
     height: 40px;
@@ -126,16 +123,16 @@ export default {
     text-align: center;
 }
 
-.tableRequest{
+.tableRequest {
     width: 100%;
     padding-top: 3rem;
 }
 
-.tableRequest tr{
+.tableRequest tr {
     text-align: center;
 }
 
-.acceptBtn{
+.acceptBtn {
     width: 180px;
     height: 45px;
     background: #3b5e97;
@@ -145,7 +142,7 @@ export default {
     border-right: 3px;
 }
 
-.rejectBtn{
+.rejectBtn {
     width: 180px;
     height: 45px;
     background: red;

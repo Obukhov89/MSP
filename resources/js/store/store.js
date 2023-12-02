@@ -2,6 +2,8 @@ import {createStore} from "vuex/dist/vuex.mjs";
 import auth from './modules/auth/auth.js'
 import displayingElements from "./modules/displayningElements/displayingElements.js";
 import composition from "./modules/composition/composition.js";
+import contest from "./modules/contest/contest.js";
+import forContest from "./modules/forContest/forContest.js";
 
 const store = createStore({
     state:{},
@@ -47,7 +49,9 @@ const store = createStore({
     modules:{
         auth,
         displayingElements,
-        composition
+        composition,
+        contest,
+        forContest
     }
 })
 

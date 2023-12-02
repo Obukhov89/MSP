@@ -52,7 +52,7 @@
 
 <script>
 // import mapState from "vuex/dist/vuex.mjs";
-import mapActions from "vuex/dist/vuex.mjs";
+import {mapActions} from "vuex/dist/vuex.mjs";
 import axios from "axios";
 
 export default {
@@ -73,9 +73,9 @@ export default {
     },
 
     methods:{
-        ...mapActions['closeModalRegistration'],
+        ...mapActions('displayingElements', ['modalRegistration']),
         close() {
-            this.$store.dispatch('closeModalRegistration', false)
+            this.$store.dispatch('displayingElements/modalRegistration', false)
         },
 
         responseRegistration(){

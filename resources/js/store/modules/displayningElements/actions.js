@@ -23,4 +23,17 @@ export default {
     closeModalEditComposition({commit}, payload){
         commit('closeModalEditComposition', payload)
     },
+
+    modalContest({commit}, payload){
+        commit ('modalContest', payload)
+    },
+
+    modalRegistration({commit}, payload){
+        commit('modalRegistration', payload)
+    },
+
+    applicationContest({commit}, payload){
+        commit('applicationContest', payload)
+    }
+
 }
