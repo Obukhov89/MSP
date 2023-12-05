@@ -93,14 +93,14 @@ export default {
 
             switch (type) {
                 case 'exist':
-                    nameInputGroup = 'ExistInputGroup.vue'
+                    nameInputGroup = 'ExistInputGroup'
                     break;
                 case 'new':
-                    nameInputGroup = 'NewInputGroup.vue'
+                    nameInputGroup = 'NewInputGroup'
                     break;
             }
 
-            return defineAsyncComponent(() => import(`../asyncComponents/${nameInputGroup}`))
+            return defineAsyncComponent(() => import(`../asyncComponents/${nameInputGroup}.vue`))
         },
 
         addCompositionContest(){

@@ -89,14 +89,14 @@ export default {
 
             switch (item) {
                 case 'exist':
-                    nameComponent = 'ExConInpts.vue'
+                    nameComponent = 'ExConInpts'
                     break;
                 case 'new':
-                    nameComponent = 'NewConInpts.vue'
+                    nameComponent = 'NewConInpts'
                     break;
             }
 
-            return defineAsyncComponent(() => import(`../asyncComponents/${nameComponent}`))
+            return defineAsyncComponent(() => import(`../asyncComponents/${nameComponent}.vue`))
         },
 
         changeItem(item) {
